@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi Emprendimiento · Sitio</title>
+  <meta name="description" content="Propuesta de valor de mi emprendimiento.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23F2C487'/%3E%3Cstop offset='1' stop-color='%23D98A3D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' fill='url(%23g)'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#FAFAF7">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/cliente.css">
+</head>
+<body>
+
+  <!-- ===================== 1. HEADER (encabezado) ===================== -->
+  <header class="encabezado" data-parte="header">
+    <div class="contenedor encabezado__fila">
+      <a href="#inicio" class="marca">
+        <canvas class="logo-esfera" width="34" height="34" aria-hidden="true"></canvas>
+        <span data-config="nombre">Mi Emprendimiento</span>
+      </a>
+
+      <!-- ===================== 2. NAV (menú principal) ===================== -->
+      <nav class="menu" id="menu" aria-label="Menú principal" data-parte="nav">
+        <a href="#beneficios">Beneficios</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contacto">Contacto</a>
+        <a href="panel.html" class="menu__panel">Panel ↗</a>
+      </nav>
+
+      <div class="encabezado__acciones">
+        <a href="#contacto" class="btn btn--primario btn--sm encabezado__cta">Empezar</a>
+        <button class="btn btn--fantasma btn--icono menu__boton" id="menu-boton" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== 3. MAIN (contenido principal) ===================== -->
+  <main data-parte="main">
+
+    <!-- 3.1 PORTADA (hero): imagen principal + titular -->
+    <section id="inicio" class="portada" data-parte="section · portada">
+      <div class="contenedor portada__grid">
+        <div class="portada__texto">
+          <span class="chip aparecer">✦ Emprendimiento estudiantil · Ayacucho</span>
+          <h1 class="aparecer" data-retraso="1">Tu frase de impacto, <span class="titulo-dorado">en pocas palabras</span></h1>
+          <p class="portada__descripcion aparecer" data-retraso="2">
+            Aquí va la propuesta de valor: a quién ayudas, qué problema resuelves
+            y por qué tu solución es diferente.
+          </p>
+          <div class="portada__botones aparecer" data-retraso="3">
+            <a href="#catalogo" class="btn btn--primario">Explorar ahora</a>
+            <a href="#como-funciona" class="btn btn--secundario">Cómo funciona</a>
+          </div>
+          <dl class="portada__datos aparecer" data-retraso="3">
+            <div><dt data-contar="120">0</dt><dd>usuarios</dd></div>
+            <div><dt id="contador-catalogo">0</dt><dd id="contador-catalogo-etiqueta">en catálogo</dd></div>
+            <div><dt data-contar="9">0</dt><dd>equipos</dd></div>
+          </dl>
+        </div>
+
+        <!-- Imagen principal: esfera animada + tarjetas flotantes (cámbiala por tu ícono 3D o mascota) -->
+        <div class="portada__visual" aria-hidden="true">
+          <div class="portada__halo"></div>
+          <canvas class="logo-esfera portada__esfera" width="340" height="340" data-puntos="520"></canvas>
+          <div class="flotante flotante--1 flotar"><span>🚀</span><div><strong>Rápido</strong><small>Listo en minutos</small></div></div>
+          <div class="flotante flotante--2 flotar"><span>🔒</span><div><strong>Seguro</strong><small>Tus datos protegidos</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.2 BENEFICIOS -->
+    <section id="beneficios" class="seccion" data-parte="section · beneficios">
+      <div class="contenedor">
+        <header class="seccion__cabecera aparecer">
+          <span class="chip">Beneficios</span>
+          <h2>¿Por qué elegirnos?</h2>
+          <p>Tres razones claras que resuelven el problema de tus clientes.</p>
+        </header>
+        <div class="rejilla rejilla--3">
+          <article class="tarjeta tarjeta--hover beneficio aparecer"><span class="beneficio__icono">⚡</span><h3>Beneficio 1</h3><p>Explica en una frase qué gana el cliente.</p></article>
+          <article class="tarjeta tarjeta--hover beneficio aparecer" data-retraso="1"><span class="beneficio__icono">🎯</span><h3>Beneficio 2</h3><p>Explica en una frase qué gana el cliente.</p></article>
+          <article class="tarjeta tarjeta--hover beneficio aparecer" data-retraso="2"><span class="beneficio__icono">💬</span><h3>Beneficio 3</h3><p>Explica en una frase qué gana el cliente.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.3 CÓMO FUNCIONA -->
+    <section id="como-funciona" class="seccion seccion--suave" data-parte="section · cómo funciona">
+      <div class="contenedor">
+        <header class="seccion__cabecera aparecer">
+          <span class="chip">Paso a paso</span>
+          <h2>Así de fácil funciona</h2>
+        </header>
+        <ol class="pasos">
+          <li class="paso aparecer"><span class="paso__numero">1</span><h3>Regístrate</h3><p>Describe el primer paso del usuario.</p></li>
+          <li class="paso aparecer" data-retraso="1"><span class="paso__numero">2</span><h3>Elige</h3><p>Describe el segundo paso del usuario.</p></li>
+          <li class="paso aparecer" data-retraso="2"><span class="paso__numero">3</span><h3>Disfruta</h3><p>Describe el resultado que obtiene.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 3.4 CATÁLOGO + ASIDE (contenido principal con barra lateral) -->
+    <section id="catalogo" class="seccion" data-parte="section · catálogo">
+      <div class="contenedor">
+        <header class="seccion__cabecera aparecer">
+          <span class="chip">Catálogo</span>
+          <h2>Lo que ofrecemos</h2>
+          <p>Todo lo que tu equipo publica desde el panel aparece aquí automáticamente.</p>
+        </header>
+
+        <div class="catalogo">
+          <div class="catalogo__lista" id="catalogo-lista">
+            <!-- Las tarjetas las crea js/cliente.js con los datos del panel -->
+          </div>
+
+          <!-- ===================== 4. ASIDE (barra lateral) ===================== -->
+          <aside class="lateral" data-parte="aside">
+            <div class="tarjeta lateral__bloque">
+              <h3>🔥 Explorar</h3>
+              <h4 class="lateral__subtitulo">Filtrar por categoría</h4>
+              <div class="filtros" id="filtros-categoria"></div>
+              <h4 class="lateral__subtitulo">Lo más nuevo</h4>
+              <ul class="lateral__lista" id="lista-novedades"></ul>
+            </div>
+            <div class="tarjeta lateral__bloque lateral__bloque--acento">
+              <h3>¿Tienes dudas?</h3>
+              <p>Escríbenos y te respondemos hoy.</p>
+              <a href="#contacto" class="btn btn--primario btn--sm">Contactar</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.5 TESTIMONIO -->
+    <section class="seccion seccion--suave" data-parte="section · testimonio">
+      <div class="contenedor">
+        <figure class="testimonio aparecer">
+          <blockquote>“Escribe aquí lo que diría un cliente satisfecho después de usar tu emprendimiento.”</blockquote>
+          <figcaption><span class="avatar">CL</span><div><strong>Nombre del cliente</strong><small>Huamanga, Ayacucho</small></div></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3.6 CONTACTO (formulario del cliente) -->
+    <section id="contacto" class="seccion" data-parte="section · contacto">
+      <div class="contenedor contacto">
+        <div class="aparecer">
+          <span class="chip">Contacto</span>
+          <h2>Hablemos</h2>
+          <p>Déjanos tus datos y te escribimos. Tu mensaje llega directo al panel del equipo.</p>
+          <ul class="contacto__datos">
+            <li>📍 Huamanga, Ayacucho</li>
+            <li>🕘 Lunes a sábado, 9:00 a 18:00</li>
+          </ul>
+        </div>
+        <form class="tarjeta contacto__formulario aparecer" data-retraso="1" id="formulario-contacto" novalidate>
+          <div class="campo"><label for="f-nombre">Nombre</label><input class="input" id="f-nombre" name="nombre" required placeholder="Tu nombre"></div>
+          <div class="campo"><label for="f-mensaje">Mensaje</label><textarea class="input" id="f-mensaje" name="mensaje" required placeholder="¿En qué te ayudamos?"></textarea></div>
+          <button class="btn btn--primario" type="submit" style="width:100%">Enviar mensaje</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== 5. FOOTER (pie de página) ===================== -->
+  <footer class="pie" data-parte="footer">
+    <div class="contenedor pie__fila">
+      <a href="#inicio" class="marca"><canvas class="logo-esfera" width="28" height="28" aria-hidden="true"></canvas><span data-config="nombre">Mi Emprendimiento</span></a>
+      <p>© 2026 · Equipo de 5.º B · I.E. "Los Licenciados" · Hecho con HTML, CSS, JavaScript e IA</p>
+    </div>
+  </footer>
+
+  <!-- 🎓 Botón para clase: muestra las partes de la página -->
+  <button class="btn btn--secundario btn--sm boton-partes" id="boton-partes" aria-pressed="false">🧩 Ver partes de la página</button>
+
+  <!-- El orden importa: configuración → datos → animaciones → lógica -->
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/animaciones.js"></script>
+  <script src="js/cliente.js"></script>
+</body>
+</html>

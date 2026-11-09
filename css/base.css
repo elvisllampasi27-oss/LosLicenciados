@@ -1,0 +1,217 @@
+/* =============================================================
+   🎨 SISTEMA DE DISEÑO — Los Licenciados
+   Este archivo define CÓMO SE VE todo el proyecto.
+   · Tema claro  → sitio del cliente (index.html)
+   · Tema oscuro → panel de control (panel.html), con data-tema="oscuro"
+   Para cambiar la identidad del proyecto, cambia SOLO las variables.
+   ============================================================= */
+
+/* ---------- 1. Variables (tokens) ---------- */
+:root {
+  /* Marca */
+  --acento: #E8913A;            /* ámbar: botones, selección, detalles */
+  --acento-fuerte: #B45309;     /* ámbar oscuro: enlaces y texto sobre fondo claro */
+  --sobre-acento: #1C1206;      /* texto encima del acento */
+  --dorado-1: #E8913A;          /* degradado de títulos (más oscuro en tema claro) */
+  --dorado-2: #B45309;
+  --exito: #15803D;
+  --alerta: #DC2626;
+
+  /* Superficies (tema claro) */
+  --fondo: #FAFAF7;
+  --superficie: #FFFFFF;
+  --superficie-2: #F4F4F5;
+  --texto: #18181B;
+  --texto-suave: #52525B;
+  --texto-tenue: #63636B;
+  --borde: #E4E4E7;
+  --borde-fuerte: #D4D4D8;
+
+  /* Tipografía */
+  --fuente: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-base: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-lg: 1.125rem;
+  --fs-h3: 1.25rem;
+  --fs-h2: clamp(1.6rem, 3.5vw, 2.25rem);
+  --fs-h1: clamp(2.1rem, 5.5vw, 3.6rem);
+
+  /* Espacios (escala de 4px) */
+  --e-1: 0.25rem; --e-2: 0.5rem; --e-3: 0.75rem; --e-4: 1rem;
+  --e-6: 1.5rem; --e-8: 2rem; --e-12: 3rem; --e-16: 4rem;
+
+  /* Formas y profundidad */
+  --radio: 12px;
+  --radio-lg: 20px;
+  --radio-total: 999px;
+  --sombra: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+  --sombra-lg: 0 24px 60px rgba(0,0,0,.12);
+  --transicion: 200ms cubic-bezier(.2,.7,.2,1);
+}
+
+/* Tema oscuro: grafito + ámbar (panel de control) */
+[data-tema="oscuro"] {
+  --acento-fuerte: #F2A65A;
+  --dorado-1: #F2C487;
+  --dorado-2: #D98A3D;
+  --exito: #5FCF8A;
+  --alerta: #EF6F5E;
+
+  --fondo: #111215;
+  --superficie: #15161A;
+  --superficie-2: #1C1D22;
+  --texto: #EDEDEF;
+  --texto-suave: #A0A1A8;
+  --texto-tenue: #85868E;
+  --borde: rgba(255,255,255,.09);
+  --borde-fuerte: rgba(255,255,255,.17);
+
+  --sombra: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px rgba(0,0,0,.35);
+  --sombra-lg: 0 24px 60px rgba(0,0,0,.5);
+  color-scheme: dark;
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--fuente);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--fondo);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { line-height: 1.15; letter-spacing: -0.02em; font-weight: 800; }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); font-weight: 700; }
+p { color: var(--texto-suave); }
+a { color: var(--acento-fuerte); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img, svg, canvas { display: block; max-width: 100%; }
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; border-radius: 4px; }
+
+.contenedor { width: min(100% - 2rem, 1160px); margin-inline: auto; }
+.oculto-visual { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Título con degradado dorado (como el panel de AcademiApp) */
+.titulo-dorado {
+  background: linear-gradient(135deg, var(--dorado-1), var(--dorado-2));
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+
+/* ---------- 3. Componentes ---------- */
+
+/* Botones */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--e-2);
+  min-height: 46px; padding: 0 var(--e-6);
+  border: 1px solid transparent; border-radius: var(--radio);
+  font: 700 var(--fs-base) var(--fuente); cursor: pointer; text-decoration: none !important;
+  transition: transform var(--transicion), background var(--transicion), box-shadow var(--transicion), border-color var(--transicion);
+}
+.btn:active { transform: scale(.98); }
+.btn--primario { background: var(--acento); color: var(--sobre-acento); box-shadow: 0 6px 20px -6px var(--acento); }
+.btn--primario:hover { transform: translateY(-2px); box-shadow: 0 10px 28px -8px var(--acento); }
+.btn--secundario { background: var(--superficie); color: var(--texto); border-color: var(--borde-fuerte); }
+.btn--secundario:hover { border-color: var(--acento); }
+.btn--fantasma { background: transparent; color: var(--texto-suave); }
+.btn--fantasma:hover { background: var(--superficie-2); color: var(--texto); }
+.btn--peligro { background: transparent; color: var(--alerta); border-color: var(--borde); }
+.btn--peligro:hover { border-color: var(--alerta); }
+.btn--sm { min-height: 36px; padding: 0 var(--e-3); font-size: var(--fs-sm); }
+.btn--icono { width: 40px; min-height: 40px; padding: 0; }
+
+/* Tarjeta */
+.tarjeta {
+  background: var(--superficie); border: 1px solid var(--borde);
+  border-radius: var(--radio-lg); padding: var(--e-6); box-shadow: var(--sombra);
+}
+.tarjeta--hover { transition: transform var(--transicion), border-color var(--transicion); }
+.tarjeta--hover:hover { transform: translateY(-4px); border-color: var(--acento); }
+
+/* Insignia / chip */
+.chip {
+  display: inline-flex; align-items: center; gap: var(--e-1);
+  padding: 2px 10px; border-radius: var(--radio-total);
+  font-size: 0.78rem; font-weight: 700;
+  background: color-mix(in srgb, var(--acento) 16%, transparent);
+  color: color-mix(in srgb, var(--acento-fuerte) 70%, var(--texto));
+}
+.chip--exito { background: color-mix(in srgb, var(--exito) 16%, transparent); color: color-mix(in srgb, var(--exito) 75%, var(--texto)); }
+.chip--alerta { background: color-mix(in srgb, var(--alerta) 16%, transparent); color: color-mix(in srgb, var(--alerta) 75%, var(--texto)); }
+.chip--neutro { background: var(--superficie-2); color: var(--texto-suave); }
+
+/* Formularios */
+.campo { display: grid; gap: 6px; margin-bottom: var(--e-4); }
+.campo label { font-size: var(--fs-sm); font-weight: 700; color: var(--texto); }
+.input {
+  width: 100%; min-height: 46px; padding: 10px 14px;
+  background: var(--superficie); color: var(--texto);
+  border: 1px solid var(--borde-fuerte); border-radius: var(--radio);
+  font: inherit; transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+textarea.input { min-height: 100px; resize: vertical; }
+.input:focus { outline: none; border-color: var(--acento); box-shadow: 0 0 0 4px color-mix(in srgb, var(--acento) 22%, transparent); }
+.campo--error .input { border-color: var(--alerta); }
+.campo__ayuda { font-size: 0.8rem; color: var(--texto-tenue); }
+.campo--error .campo__ayuda { color: var(--alerta); }
+
+/* Tabla */
+.tabla-envoltura { overflow-x: auto; border: 1px solid var(--borde); border-radius: var(--radio-lg); }
+.tabla { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.tabla th {
+  text-align: left; padding: 12px 16px; background: var(--superficie-2);
+  color: var(--texto-tenue); font-size: 0.75rem; text-transform: uppercase; letter-spacing: .06em;
+}
+.tabla td { padding: 14px 16px; border-top: 1px solid var(--borde); color: var(--texto); }
+.tabla tbody tr { transition: background var(--transicion); }
+.tabla tbody tr:hover { background: color-mix(in srgb, var(--acento) 6%, transparent); }
+
+/* Indicador (KPI) */
+.kpi { display: grid; gap: var(--e-1); }
+.kpi__etiqueta { font-size: var(--fs-sm); color: var(--texto-tenue); font-weight: 600; }
+.kpi__valor { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
+.kpi__cambio { font-size: 0.8rem; font-weight: 700; color: var(--exito); }
+.kpi__cambio--baja { color: var(--alerta); }
+.kpi__cambio--alerta { color: var(--acento-fuerte); }
+
+/* Avatar */
+.avatar {
+  display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--dorado-1), var(--dorado-2)); color: var(--sobre-acento);
+  font-weight: 800; font-size: var(--fs-sm); flex-shrink: 0;
+}
+
+/* Aviso flotante (toast) */
+.toast-zona { position: fixed; right: 16px; bottom: 16px; z-index: 100; display: grid; gap: 8px; }
+.toast {
+  display: flex; align-items: center; gap: 10px; min-width: 240px; max-width: 360px;
+  padding: 12px 16px; border-radius: var(--radio);
+  background: var(--texto); color: var(--fondo); box-shadow: var(--sombra-lg);
+  font-weight: 600; font-size: var(--fs-sm); animation: toast-entra .3s ease both;
+}
+@keyframes toast-entra { from { opacity: 0; transform: translateY(12px); } }
+
+/* Estado vacío */
+.vacio { display: grid; place-items: center; gap: var(--e-2); padding: var(--e-12) var(--e-4); text-align: center; color: var(--texto-tenue); }
+.vacio__icono { font-size: 2.5rem; }
+
+/* ---------- 4. Animaciones ---------- */
+/* Aparición al hacer scroll: agrega la clase "aparecer" a cualquier elemento */
+.aparecer { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.aparecer.visible { opacity: 1; transform: none; }
+.aparecer[data-retraso="1"] { transition-delay: .1s; }
+.aparecer[data-retraso="2"] { transition-delay: .2s; }
+.aparecer[data-retraso="3"] { transition-delay: .3s; }
+
+/* Flotación suave (para íconos 3D o mascotas) */
+.flotar { animation: flotar 5s ease-in-out infinite; }
+@keyframes flotar { 50% { transform: translateY(-12px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .aparecer { opacity: 1; transform: none; }
+}

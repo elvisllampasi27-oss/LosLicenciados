@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de control · Mi Emprendimiento</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23F2C487'/%3E%3Cstop offset='1' stop-color='%23D98A3D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' fill='url(%23g)'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#111215">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+  <div class="panel">
+
+    <!-- ===================== BARRA LATERAL (aside) ===================== -->
+    <aside class="lateral" id="lateral" aria-label="Navegación del panel">
+      <div class="lateral__marca">
+        <canvas class="logo-esfera" width="36" height="36" aria-hidden="true"></canvas>
+        <div><strong data-config="nombre">Mi Emprendimiento</strong><small>Panel de control</small></div>
+      </div>
+
+      <nav class="lateral__menu">
+        <p class="lateral__grupo">General</p>
+        <a href="#resumen" class="lateral__enlace" data-vista="resumen"><span>🏠</span>Resumen</a>
+
+        <p class="lateral__grupo">Gestión</p>
+        <a href="#registros" class="lateral__enlace" data-vista="registros"><span id="menu-icono">📋</span><span id="menu-modulo">Registros</span><b class="lateral__contador" id="contador-registros">0</b></a>
+        <a href="#mensajes" class="lateral__enlace" data-vista="mensajes"><span>💬</span>Mensajes<b class="lateral__contador lateral__contador--nuevo" id="contador-mensajes" hidden>0</b></a>
+
+        <p class="lateral__grupo">Sistema</p>
+        <a href="#configuracion" class="lateral__enlace" data-vista="configuracion"><span>⚙️</span>Configuración</a>
+        <a href="index.html" class="lateral__enlace" id="enlace-sitio"><span>🌐</span>Ver sitio ↗</a>
+      </nav>
+
+      <div class="lateral__usuario">
+        <span class="avatar">AD</span>
+        <div><strong>Administrador</strong><small>Equipo 5.º B</small></div>
+      </div>
+    </aside>
+    <div class="cortina" id="cortina"></div>
+
+    <!-- ===================== ZONA PRINCIPAL ===================== -->
+    <div class="principal">
+      <!-- Barra superior -->
+      <header class="superior">
+        <button class="btn btn--fantasma btn--icono superior__menu" id="abrir-lateral" aria-label="Abrir menú">☰</button>
+        <div class="superior__buscar">
+          <span aria-hidden="true">🔍</span>
+          <input type="search" id="buscador-global" placeholder="Buscar en el panel…" aria-label="Buscar">
+        </div>
+        <div class="superior__acciones">
+          <span class="chip chip--exito superior__estado">● En línea</span>
+          <button class="btn btn--primario btn--sm" data-abrir-modal>＋ Nuevo</button>
+        </div>
+      </header>
+
+      <main class="contenido">
+
+        <!-- ========== VISTA: RESUMEN ========== -->
+        <section class="vista" id="vista-resumen" data-vista="resumen">
+          <div class="vista__cabecera">
+            <div>
+              <h1 class="titulo-dorado" id="saludo">Buenos días, equipo</h1>
+              <p>Resumen de la actividad de tu emprendimiento.</p>
+            </div>
+          </div>
+
+          <div class="kpis" id="kpis"></div>
+
+          <div class="rejilla-resumen">
+            <article class="tarjeta">
+              <div class="tarjeta__cabecera"><h2 class="h-tarjeta" id="grafico-titulo">Registros por día</h2><span class="chip chip--neutro">Últimos 7 días</span></div>
+              <div id="grafico" class="grafico" role="img" aria-label="Gráfico de registros por día"></div>
+            </article>
+            <article class="tarjeta">
+              <div class="tarjeta__cabecera"><h2 class="h-tarjeta">Actividad reciente</h2></div>
+              <ul class="actividad" id="actividad"></ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- ========== VISTA: REGISTROS (módulo principal) ========== -->
+        <section class="vista" id="vista-registros" data-vista="registros" hidden>
+          <div class="vista__cabecera">
+            <div>
+              <h1 class="titulo-dorado" id="titulo-modulo">Registros</h1>
+              <p>Crea, edita y elimina la información de tu emprendimiento.</p>
+            </div>
+            <button class="btn btn--primario" data-abrir-modal id="boton-nuevo">＋ Nuevo registro</button>
+          </div>
+
+          <div class="barra-herramientas">
+            <input type="search" class="input" id="buscador-tabla" placeholder="Buscar…" aria-label="Buscar registros">
+            <select class="input" id="filtro-estado" aria-label="Filtrar por estado"></select>
+          </div>
+
+          <div class="tabla-envoltura">
+            <table class="tabla" id="tabla-registros"><thead></thead><tbody></tbody></table>
+          </div>
+          <p class="tabla__pie" id="tabla-pie"></p>
+        </section>
+
+        <!-- ========== VISTA: MENSAJES (desde el formulario del sitio) ========== -->
+        <section class="vista" id="vista-mensajes" data-vista="mensajes" hidden>
+          <div class="vista__cabecera">
+            <div><h1 class="titulo-dorado">Mensajes</h1><p>Lo que tus clientes escribieron en el formulario de contacto del sitio.</p></div>
+          </div>
+          <div class="mensajes" id="lista-mensajes"></div>
+        </section>
+
+        <!-- ========== VISTA: CONFIGURACIÓN ========== -->
+        <section class="vista" id="vista-configuracion" data-vista="configuracion" hidden>
+          <div class="vista__cabecera">
+            <div><h1 class="titulo-dorado">Configuración</h1><p>Prueba cambios visuales en vivo. Para que sean permanentes, cámbialos en <code>css/base.css</code>.</p></div>
+          </div>
+          <div class="rejilla-config">
+            <article class="tarjeta">
+              <h2 class="h-tarjeta">🎨 Color de acento</h2>
+              <p>Elige un color y mira cómo cambia todo el panel.</p>
+              <div class="colores" id="colores">
+                <button class="color" style="--c:#E8913A" data-color="#E8913A" aria-label="Ámbar"></button>
+                <button class="color" style="--c:#22C55E" data-color="#22C55E" aria-label="Verde"></button>
+                <button class="color" style="--c:#3B82F6" data-color="#3B82F6" aria-label="Azul"></button>
+                <button class="color" style="--c:#A855F7" data-color="#A855F7" aria-label="Morado"></button>
+                <button class="color" style="--c:#EF4444" data-color="#EF4444" aria-label="Rojo"></button>
+                <label class="color color--libre" aria-label="Color personalizado"><input type="color" id="color-libre" value="#E8913A"></label>
+              </div>
+            </article>
+            <article class="tarjeta">
+              <h2 class="h-tarjeta">🌓 Tema</h2>
+              <p>Cambia entre el tema oscuro y el claro.</p>
+              <button class="btn btn--secundario" id="cambiar-tema">☀️ Usar tema claro</button>
+            </article>
+            <article class="tarjeta">
+              <h2 class="h-tarjeta">♻️ Restablecer datos</h2>
+              <p>Borra todo lo guardado y vuelve a los datos de ejemplo de <code>config.js</code>.</p>
+              <button class="btn btn--peligro" id="restablecer">Restablecer datos</button>
+            </article>
+            <article class="tarjeta">
+              <h2 class="h-tarjeta">🧩 Partes de este software</h2>
+              <ul class="partes-lista">
+                <li><code>panel.html</code> Interfaz del panel</li>
+                <li><code>css/base.css</code> Diseño (colores y componentes)</li>
+                <li><code>css/panel.css</code> Diseño propio del panel</li>
+                <li><code>js/panel.js</code> Lógica del panel</li>
+                <li><code>js/config.js</code> Configuración (qué datos guarda)</li>
+                <li><code>js/data.js</code> Datos (dónde se guardan)</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ===================== VENTANA MODAL: formulario ===================== -->
+  <dialog class="modal" id="modal" aria-labelledby="modal-titulo">
+    <form method="dialog" class="modal__contenido" id="formulario-registro" novalidate>
+      <div class="modal__cabecera">
+        <h2 id="modal-titulo">Nuevo registro</h2>
+        <button class="btn btn--fantasma btn--icono" value="cancelar" formnovalidate aria-label="Cerrar">✕</button>
+      </div>
+      <div id="campos-formulario"></div>
+      <div class="modal__pie">
+        <button class="btn btn--fantasma" value="cancelar" formnovalidate>Cancelar</button>
+        <button class="btn btn--primario" value="guardar" id="boton-guardar">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- El orden importa: configuración → datos → animaciones → lógica -->
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/animaciones.js"></script>
+  <script src="js/panel.js"></script>
+</body>
+</html>
