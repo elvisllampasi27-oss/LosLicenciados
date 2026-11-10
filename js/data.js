@@ -111,11 +111,26 @@ const Util = {
     return dias === 1 ? "Ayer" : `Hace ${dias} días`;
   },
   iniciales: (texto) => String(texto || "?").trim().split(/\s+/).slice(0, 2).map((p) => p[0]).join("").toUpperCase(),
-  // Color de la insignia según el estado (1.ª opción = verde, 2.ª = alerta, resto = neutro)
+  // Color de la insignia según el estado:
+  // el estado que se publica = verde · la última opción = gris · las demás = ámbar
+  // (si no hay estado publicado: 1.ª opción = verde, 2.ª = ámbar, resto = gris)
   claseEstado: (estado) => {
     const opciones = Util.campo("estado")?.opciones || [];
+    const publicado = CONFIG.catalogo?.soloEstado;
+    if (publicado && opciones.includes(publicado)) {
+      if (estado === publicado) return "chip--exito";
+      return estado === opciones[opciones.length - 1] ? "chip--neutro" : "chip--alerta";
+    }
     const i = opciones.indexOf(estado);
     return i === 0 ? "chip--exito" : i === 1 ? "chip--alerta" : "chip--neutro";
+  },
+  // Opciones de estado ordenadas: primero la que se publica
+  estadosOrdenados: () => {
+    const opciones = [...(Util.campo("estado")?.opciones || [])];
+    const publicado = CONFIG.catalogo?.soloEstado;
+    const i = opciones.indexOf(publicado);
+    if (i > 0) opciones.unshift(opciones.splice(i, 1)[0]);
+    return opciones;
   },
   // Pone el nombre del proyecto donde haya data-config="nombre"
   aplicarNombre: () => {

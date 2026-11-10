@@ -52,7 +52,7 @@ mostrarVista();
 function pintarResumen() {
   const sinLeer = mensajes.filter((m) => !m.leido).length;
   const kpis = [{ icono: M.icono, etiqueta: M.nombre, valor: registros.length, nota: "en total" }];
-  (campoEstado?.opciones || []).slice(0, 2).forEach((op) => {
+  Util.estadosOrdenados().slice(0, 2).forEach((op) => {
     const n = registros.filter((r) => r[campoEstado.nombre] === op).length;
     kpis.push({ icono: kpis.length === 1 ? "✅" : "⏳", etiqueta: op, valor: n, nota: registros.length ? `${Math.round((n / registros.length) * 100)}% del total` : "—" });
   });

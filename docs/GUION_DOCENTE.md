@@ -104,6 +104,7 @@
 **📽️** Señala en el prompt sus partes: **rol**, **contexto**, **formato exacto** y **privacidad** (las fichas tienen celulares de los alumnos).
 
 **👀 Revisar con cada equipo:**
+- [ ] ¿Lo pegaron en **`mi-proyecto.md`**? *(Error visto en la prueba: lo pegaron en `.github/copilot-instructions.md`.)*
 - [ ] ¿Sin teléfonos ni DNI?
 - [ ] ¿Las **partes** tienen sentido? (Planly → solo panel; Raíces locales → sobre todo sitio; A.D.C → ambos)
 - [ ] ¿Hay **un solo campo con rol titulo** y son 6 campos o menos?

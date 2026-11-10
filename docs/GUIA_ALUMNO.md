@@ -65,8 +65,8 @@ emprendimiento. Vamos a adaptar una plantilla web que ya funciona y tiene dos ca
 - PANEL DE CONTROL: resumen con indicadores y gráfico, una tabla para crear/editar/eliminar
   registros, y bandeja de mensajes.
 
-Completa EXACTAMENTE este formato en Markdown, sin agregar ni quitar secciones.
-Si falta información, propón algo coherente y márcalo con ⚠️.
+Responde SOLO con el formato siguiente, en Markdown, sin frases antes ni después y sin
+agregar ni quitar secciones. Si falta información, propón algo coherente y márcalo con ⚠️.
 Por privacidad, NUNCA incluyas teléfonos, DNI ni direcciones.
 
 # Mi proyecto
@@ -75,7 +75,7 @@ Por privacidad, NUNCA incluyas teléfonos, DNI ni direcciones.
 - Nombre:
 - Eslogan (máx. 8 palabras; marca con *asteriscos* las 2-3 palabras a resaltar):
 - Propuesta de valor (máx. 30 palabras):
-- Color de acento (hex):
+- Color de acento (hex, tono medio o claro: encima va texto oscuro y debe leerse bien):
 
 ## 2. Partes que usaremos
 - Sitio del cliente: sí/no (justifica en 1 línea)
@@ -101,7 +101,9 @@ Por privacidad, NUNCA incluyas teléfonos, DNI ni direcciones.
 ```
 
 3. **Revisen en equipo.** ¿Los ⚠️ son correctos? ¿Los campos sirven para su idea? Si algo está mal, corríjanlo en el mismo chat. Ejemplo: `Quita el campo precio y agrega uno "fecha_visita" de tipo date.`
-4. En VS Code abre **`mi-proyecto.md`**, borra su contenido, pega la respuesta y guarda.
+4. En VS Code abre **`mi-proyecto.md`** (está en la raíz, junto a `index.html`). **Mira el nombre en la pestaña** y luego: `Ctrl + A` (seleccionar todo), `Ctrl + V` (pegar) y `Ctrl + S` (guardar).
+
+> ⛔ **Pégalo SOLO en `mi-proyecto.md`.** Nunca en `.github/copilot-instructions.md`: ese archivo contiene las reglas que Copilot lee siempre y no se toca. Si te equivocaste, mira "Si algo sale mal".
 
 ✅ **Listo cuando:** `mi-proyecto.md` tiene las 4 secciones y ningún dato personal.
 
@@ -165,6 +167,7 @@ panel hasta que aparece en el catálogo del sitio. Menciona qué hacen #config.j
 |---|---|
 | Copilot cambió algo que no debía | **Undo** en el chat o `Ctrl + Z`. Repite el prompt agregando "cambia SOLO lo indicado". |
 | Página en blanco o botones que no responden | `F12` → **Console** → copia el error rojo → en Copilot: `Tengo este error: [error]. Diagnostica la causa y aplica la corrección mínima.` |
+| Pegué la respuesta en otro archivo | `Ctrl + Shift + G` (Control de código fuente) → clic derecho sobre ese archivo → **Discard Changes**. Sin Git: `Ctrl + Z` hasta recuperarlo. |
 | Siguen saliendo los datos de la plantilla | Panel → **Configuración → Restablecer datos**. |
 | No cambian las fuentes | Necesitas internet: Google Fonts las descarga. |
 | Se acabaron los mensajes de Copilot | Usa la cuenta de otro integrante, o pega el prompt y el archivo en Gemini o Claude. |
