@@ -129,16 +129,19 @@ catalogo.soloEstado y datosEjemplo (5 registros). Mantén mensajesEjemplo.
 Con las secciones 1 y 4 de #mi-proyecto.md, actualiza los textos de #index.html: <title>,
 meta description, chip y <h1> de la portada (las palabras marcadas con * van dentro de
 <span class="titulo-dorado">), propuesta de valor, beneficios, pasos, testimonio y datos de
-contacto. Cambia SOLO textos y emojis; no toques clases, ids ni scripts.
+contacto. Cambia también las 2 tarjetas flotantes de la portada y los datos "usuarios" y
+"equipos" por textos coherentes con nuestra propuesta de valor.
+Cambia SOLO textos y emojis; no toques clases, ids ni scripts.
 ```
 ✅ **Prueba:** recarga `index.html`. ¿Se ve tu emprendimiento? *(Si tu equipo no usa el sitio, salta este prompt.)*
 
 ### 🎨 Prompt 3: Identidad visual
 ```
 Usa el color de acento de #mi-proyecto.md en #base.css: cambia SOLO --acento, --acento-fuerte,
---dorado-1 y --dorado-2 (en :root y en [data-tema="oscuro"]) para crear una paleta armónica.
-Verifica contraste AA del texto oscuro sobre --acento. En #animaciones.js ajusta los colores por
-defecto de la esfera (color y color2) a la nueva paleta.
+--sobre-acento, --dorado-1 y --dorado-2 (en :root y en [data-tema="oscuro"]) para crear una
+paleta armónica. Elige --sobre-acento (texto de los botones) entre #1C1206 y #FFFFFF según cuál
+tenga contraste AA (4.5:1) sobre --acento, e indícame el contraste. En #animaciones.js ajusta
+los colores por defecto de la esfera (color y color2) a la nueva paleta.
 ```
 ✅ **Prueba:** ¿cambiaron los colores en el sitio, en el panel y en la esfera?
 

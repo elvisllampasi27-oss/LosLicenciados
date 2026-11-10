@@ -132,6 +132,9 @@
 | Siguen los productos de ejemplo | Panel → Configuración → **Restablecer datos** |
 | Página en blanco | `F12` → error rojo → prompt de diagnóstico. Lo más común: una coma faltante en `config.js` |
 | Copilot tocó archivos de más | **Undo** → repetir. Momento para explicar por qué los prompts dicen "SOLO" |
+| Pegó la respuesta del Analista en otro archivo (p. ej. `copilot-instructions.md`) | `Ctrl + Shift + G` → clic derecho en ese archivo → **Discard Changes**. Pasó en la prueba piloto: es el error más probable |
+| "¿Qué hizo Copilot?" | `Ctrl + Shift + G` → clic en el archivo: **rojo = antes, verde = después**. Úsalo para enseñar a revisar el trabajo de la IA |
+| Quedó algún texto de la plantilla | La IA cambia solo lo que se le pide. Se corrige **a mano** o con un prompt corto: es el momento de enseñar a **iterar** |
 | Equipo lento | Prioridad: **Prompt 1**. Los textos se pueden cambiar a mano |
 | Equipo rápido | Mejoras "Pantalla de ingreso" o "Exportar CSV" |
 
@@ -164,6 +167,18 @@ Luego 2 o 3 equipos muestran en 1 minuto: emprendimiento → qué partes usan �
 **🎤** *"Hoy hicieron lo que hace un equipo real: partieron de una base, la entendieron por partes y la adaptaron con un método. La IA escribió el código, pero **ustedes decidieron qué, dónde y por qué**."*
 
 **📋 Tarea:** completar el checklist de la guía y crear una cuenta en **supabase.com** para la próxima sesión, donde `data.js` se conectará a la nube.
+
+---
+
+## 🧪 Resultados de la prueba piloto (09/11/2026, equipo Ayllu Cuida)
+| Paso | Herramienta | Resultado |
+|---|---|---|
+| Clonar el repositorio | VS Code + Git | ✅ Sin problemas |
+| Analista | Claude Free con la ficha `.docx` adjunta | ✅ Leyó la ficha, respetó el formato, marcó ⚠️ y no incluyó teléfonos. Eligió sitio + panel |
+| Prompt 1 · Configuración | Copilot (Agent) | ✅ Cambió solo `config.js` y verificó la sintaxis por su cuenta |
+| Prompt 2 · Textos | Copilot (Agent) | ✅ Respetó clases, ids y scripts. *(El prompt se amplió para incluir las tarjetas flotantes y los datos de la portada)* |
+| Prompt 3 · Colores | Copilot (Agent) | ✅ Calculó el contraste (4.99:1), eligió texto blanco y ajustó el tema oscuro (5.93:1) |
+| Error humano observado | — | Pegar la respuesta del Analista en `copilot-instructions.md` → se agregó el aviso y la solución en ambas guías |
 
 ---
 
