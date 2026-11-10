@@ -25,7 +25,6 @@ git clone https://github.com/elvisllampasi27-oss/LosLicenciados.git
 Abre `index.html` en el navegador. Para trabajar, abre la carpeta en **VS Code** con **GitHub Copilot**.
 
 📘 **Alumnos:** [docs/GUIA_ALUMNO.md](docs/GUIA_ALUMNO.md)
-🎤 **Docentes:** [docs/GUION_DOCENTE.md](docs/GUION_DOCENTE.md) · exposición de 15 min: [docs/EXPOSICION_DOCENTE.md](docs/EXPOSICION_DOCENTE.md)
 🧩 **Catálogo de componentes:** [componentes.html](componentes.html)
 
 ### 📂 Sesión 07 · Guía de cada grupo (base de datos + funciones propias)
