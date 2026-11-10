@@ -46,7 +46,8 @@ const CONFIG = {
        "categoria"   → insignia de categoría
        "estado"      → insignia de color y filtro del panel
        "precio"      → se muestra como S/ 0.00
-       "icono"       → emoji que representa al registro                */
+       "icono"       → emoji que representa al registro
+     enTabla: false (opcional) → el campo no se muestra como columna en el panel */
   campos: [
     { nombre: "nombre", etiqueta: "Nombre", tipo: "text", requerido: true, rol: "titulo" },
     { nombre: "categoria", etiqueta: "Categoría", tipo: "select", opciones: ["Artesanía", "Alimentos", "Textiles"], rol: "categoria" },

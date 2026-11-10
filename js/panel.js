@@ -115,7 +115,8 @@ function graficoBarras(contenedor, datos) {
 
 // ---------- 5. Tabla del módulo ----------
 // Columnas: el título va primero; descripción e ícono se muestran dentro de esa celda
-const columnas = CONFIG.campos.filter((c) => !["titulo", "descripcion", "icono"].includes(c.rol));
+// enTabla: false en config.js oculta ese campo de la tabla (sigue en el formulario)
+const columnas = CONFIG.campos.filter((c) => !["titulo", "descripcion", "icono"].includes(c.rol) && c.enTabla !== false);
 
 $("#tabla-registros thead").innerHTML = `<tr>
   <th>${Util.seguro(Util.campo("titulo")?.etiqueta || "Nombre")}</th>
