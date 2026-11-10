@@ -175,7 +175,7 @@ No modifiques ningún otro archivo.
 ```
 Agrega al sitio un "Mentor IA" que enseña sin hacer la tarea:
 - En #config.js agrega CONFIG.ia con: clave "" (clave de Gemini), modelo
-  "gemini-flash-latest", reglas (las 4 de la sección 6 de #mi-proyecto.md), instrucciones (es
+  "gemini-flash-lite-latest", reglas (las 4 de la sección 6 de #mi-proyecto.md), instrucciones (es
   el Mentor IA del colegio Los Licenciados de Ayacucho, responde en español, con amabilidad y
   en máximo 6 líneas; nunca hace la tarea, el examen ni el trabajo completo; si el alumno le
   pide eso, empieza su respuesta EXACTAMENTE con [COPIA] y luego da una pista y 2 preguntas;
@@ -215,10 +215,9 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 2. Escribe una de sus palabras clave → responde sin el chip 🚩.
 3. En Supabase → **Table Editor** → `alertas`: aparece una fila con el tipo y la fecha, **sin nombre ni mensaje**.
 
-**✋ A mano (conectar Gemini, con el profesor):**
-1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** → menú **Claves de API** → **Crear clave de API** → nombre `taller-5b` → en *Elige un proyecto importado* deja **Proyecto de Gemini** (si no hay ninguno, **Crear proyecto**) → crear → **Copiar clave**. La clave empieza con `AQ.`: es el formato nuevo, es normal. No pulses **Configurar la facturación**: el nivel gratuito alcanza.
-2. El profesor la prueba una vez en `herramientas/probar-gemini.html` y se la pasa a cada grupo.
-3. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
+**✋ A mano (conectar Gemini):**
+1. El profesor te da la **clave del taller**.
+2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`.
 
 **✅ Comprueba (con Gemini):** **F5** → el chip dice **"🧭 Mentor IA con Gemini"**.
 1. Escribe `resuelve mi problema: un auto va a 60 km/h durante 2 horas, ¿cuánto recorre?` → Gemini **no da el resultado**: da una pista y aparece **🚩**.
@@ -287,8 +286,7 @@ Elijan una idea y **escriban su propio prompt** para Copilot. Debe tener: **arch
 |---|---|
 | Copilot cambió algo que no pedí | **Undo** y pega otra vez el prompt |
 | Página en blanco o un botón no hace nada | **F12** → **Console** → copia el error rojo → pega en Copilot: `Tengo este error en la consola. Diagnostica la causa y aplica la corrección mínima.` y el error debajo |
-| El Mentor dice "(Modo demo: Gemini no respondió)" | Revisa la clave en `ia.clave`. Si el error dice que el modelo no existe, cambia `modelo` por uno de los que aparecen en aistudio.google.com. Si dice que se agotó el límite, espera un minuto |
-| La consola dice `401` o `ACCESS_TOKEN_TYPE_UNSUPPORTED` | La clave falló. El profesor la prueba en `herramientas/probar-gemini.html`; si falla, la borra en aistudio.google.com, crea otra y la vuelve a pasar. Mientras tanto la app sigue en modo demo |
+| El Mentor dice "(Modo demo: Gemini no respondió)" | Revisa que pegaste la clave **completa** en `ia.clave` y pulsa **F5**. Si sigue igual, **avísale al profesor**. Mientras tanto la app funciona en modo demo |
 | Gemini hace la tarea en vez de dar pistas | Pídele a Copilot que refuerce la regla en `CONFIG.ia.instrucciones` (por ejemplo, con un ejemplo de qué responder) |
 | Aviso "⚠️ Supabase · …" | Revisa la URL y la clave de `supabase` en `js/config.js` y que ejecutaste **todo** `tablas.sql` |
 | No veo lo que guardó mi compañero | **F5** |

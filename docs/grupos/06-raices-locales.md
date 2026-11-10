@@ -275,7 +275,7 @@ Cambia SOLO esos 4 archivos. Al final lista los archivos cambiados y cómo proba
 ```
 Agrega a la vista Herramientas del panel "La historia de tu producto" con IA:
 - En #config.js agrega CONFIG.ia con: clave "" (clave de Gemini), modelo
-  "gemini-flash-latest", instrucciones (es redactor de una tienda en línea de artesanos y
+  "gemini-flash-lite-latest", instrucciones (es redactor de una tienda en línea de artesanos y
   productores rurales de Ayacucho a precio justo; con los datos que le den escribe la
   descripción del producto en español, cálida y honesta, en 3 oraciones y máximo 60 palabras:
   qué es, cómo y dónde se hace, y por qué comprarlo; no inventa datos, no usa nombres de
@@ -303,10 +303,9 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 
 **✅ Comprueba (modo demo):** **Herramientas** → elige un producto → en **Datos sueltos** escribe, por ejemplo, `lana de oveja, tintes naturales, 2 semanas en telar` → **✍️ Escribir con IA**. Aparece la descripción con la plantilla. Pulsa **Guardar en el producto** y mira en `index.html` (**F5**) la nueva descripción.
 
-**✋ A mano (conectar Gemini, con el profesor):**
-1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** → menú **Claves de API** → **Crear clave de API** → nombre `taller-5b` → en *Elige un proyecto importado* deja **Proyecto de Gemini** (si no hay ninguno, **Crear proyecto**) → crear → **Copiar clave**. La clave empieza con `AQ.`: es el formato nuevo, es normal. No pulses **Configurar la facturación**: el nivel gratuito alcanza.
-2. El profesor la prueba una vez en `herramientas/probar-gemini.html` y se la pasa a cada grupo.
-3. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
+**✋ A mano (conectar Gemini):**
+1. El profesor te da la **clave del taller**.
+2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`.
 
 **✅ Comprueba (con Gemini):** **F5** → el chip dice **"Con Gemini"**. Con los mismos datos, **✍️ Escribir con IA**: ahora es un texto nuevo de 3 oraciones, que **no inventa** cosas que no escribiste. Corrígelo si quieres y guárdalo.
 
@@ -334,7 +333,6 @@ Elijan una idea y **escriban su propio prompt** para Copilot. Debe tener: **arch
 | "🛒 Agregar" está desactivado | El producto tiene stock 0. Súbelo en el panel → **Productos** → editar |
 | Un producto desapareció del sitio | Se agotó y pasó a **Agotado**. Súbele el stock y vuelve a ponerlo en **Disponible** |
 | "No encontramos el pedido" con el código correcto | Revisa que sea el mismo proyecto de Supabase (mismo `config.js`) y pulsa **F5** |
-| La historia sale con la plantilla aunque puse la clave | Revisa la clave en `ia.clave`. **F12** → **Console** muestra el motivo. Si el modelo no existe, cambia `modelo` por uno de aistudio.google.com. Si se agotó el límite, espera un minuto |
-| La consola dice `401` o `ACCESS_TOKEN_TYPE_UNSUPPORTED` | La clave falló. El profesor la prueba en `herramientas/probar-gemini.html`; si falla, la borra en aistudio.google.com, crea otra y la vuelve a pasar. Mientras tanto la app sigue en modo demo |
+| La historia sale con la plantilla aunque puse la clave | Revisa que pegaste la clave **completa** en `ia.clave` y pulsa **F5**. Si sigue igual, **avísale al profesor**. Mientras tanto la app funciona en modo demo |
 | Aviso "⚠️ Supabase · …" | Revisa la URL y la clave de `supabase` en `js/config.js` y que ejecutaste **todo** `tablas.sql` |
 | Siguen los productos de la plantilla | Panel → **Configuración** → **Restablecer datos** |

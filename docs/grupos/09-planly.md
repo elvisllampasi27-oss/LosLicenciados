@@ -234,7 +234,7 @@ Cambia SOLO esos 3 archivos. Al final lista los archivos cambiados y cómo proba
 ```
 Agrega al tablero "Anota como hablas" con IA:
 - En #config.js agrega CONFIG.ia con: clave "" (clave de Gemini), modelo
-  "gemini-flash-latest", instrucciones (es el asistente de Planly; convierte lo que escribe
+  "gemini-flash-lite-latest", instrucciones (es el asistente de Planly; convierte lo que escribe
   el estudiante en UNA tarea; responde SOLO con un objeto JSON con las claves tarea (texto
   corto, sin la fecha ni la prioridad, con mayúscula inicial), curso (exactamente uno de los
   6 cursos), fecha (AAAA-MM-DD calculada desde la fecha de hoy que le dan, o "" si no dice) y
@@ -268,10 +268,9 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 
 **✅ Comprueba (modo demo):** **Tablero** → **F5**. El chip dice **"Modo demo"**. Escribe `exposición de biología el jueves, es muy importante` → **Anotar**. La propuesta dice **Exposición de biología · Ciencias · (fecha del jueves) · Alta**. **Guardar tarea**: aparece en **Pendiente**. Prueba también `leer el cuento para mañana sin apuro` (Comunicación, mañana, **Baja**).
 
-**✋ A mano (conectar Gemini, con el profesor):**
-1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** → menú **Claves de API** → **Crear clave de API** → nombre `taller-5b` → en *Elige un proyecto importado* deja **Proyecto de Gemini** (si no hay ninguno, **Crear proyecto**) → crear → **Copiar clave**. La clave empieza con `AQ.`: es el formato nuevo, es normal. No pulses **Configurar la facturación**: el nivel gratuito alcanza.
-2. El profesor la prueba una vez en `herramientas/probar-gemini.html` y se la pasa a cada grupo.
-3. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
+**✋ A mano (conectar Gemini):**
+1. El profesor te da la **clave del taller**.
+2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`.
 
 **✅ Comprueba (con Gemini):** **F5** → el chip dice **"Con Gemini"**. Escribe algo más libre, por ejemplo `el profe de química dejó un informe de laboratorio para el próximo viernes y vale nota`. Gemini entiende el curso (**Ciencias**), la fecha del viernes y la prioridad.
 
@@ -337,7 +336,6 @@ Elijan una idea y **escriban su propio prompt** para Copilot. Debe tener: **arch
 | Arrastrar no funciona | En celular no se puede arrastrar: usa los botones **←** y **→** |
 | El semáforo marca mal los días | Revisa que la fecha se guarde como `AAAA-MM-DD` y que `semaforo()` use la fecha local (no `new Date("AAAA-MM-DD")` directo, que la toma en otra zona horaria) |
 | No suena el pitido | Sube el volumen. El navegador solo deja sonar después de que tocaste un botón de la página |
-| "Anota como hablas" dice "(Modo demo: Gemini no respondió)" | Revisa la clave en `ia.clave`. Si el error dice que el modelo no existe, cambia `modelo` por uno de aistudio.google.com. Si se agotó el límite, espera un minuto |
-| La consola dice `401` o `ACCESS_TOKEN_TYPE_UNSUPPORTED` | La clave falló. El profesor la prueba en `herramientas/probar-gemini.html`; si falla, la borra en aistudio.google.com, crea otra y la vuelve a pasar. Mientras tanto la app sigue en modo demo |
+| "Anota como hablas" dice "(Modo demo: Gemini no respondió)" | Revisa que pegaste la clave **completa** en `ia.clave` y pulsa **F5**. Si sigue igual, **avísale al profesor**. Mientras tanto la app funciona en modo demo |
 | Aviso "⚠️ Supabase · …" | Revisa la URL y la clave de `supabase` en `js/config.js` y que ejecutaste **todo** `tablas.sql` |
 | Siguen los productos de la plantilla | Panel → **Configuración** → **Restablecer datos** |

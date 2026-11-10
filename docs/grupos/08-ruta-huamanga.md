@@ -277,7 +277,7 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 ```
 Agrega "Arma tu ruta" con IA:
 - En #config.js agrega CONFIG.ia con: clave "" (clave de Gemini), modelo
-  "gemini-flash-latest", intereses (las 5 categorías), lugaresPorDia: 4, horas: ["9:00 a. m.",
+  "gemini-flash-lite-latest", intereses (las 5 categorías), lugaresPorDia: 4, horas: ["9:00 a. m.",
   "11:00 a. m.", "1:00 p. m.", "4:00 p. m.", "6:00 p. m."] e instrucciones (es guía turístico
   de Huamanga; recibe los días, los intereses y la lista de lugares en JSON; arma un
   itinerario usando SOLO lugares de esa lista, nunca inventa lugares, máximo 4 por día,
@@ -318,10 +318,9 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 
 **✅ Comprueba (modo demo):** `index.html` → **F5** → menú **Arma tu ruta**. El chip dice **"(modo demo)"**. Elige **2 días**, marca **Iglesias** y **Gastronomía** → **Armar mi ruta**. Aparecen **Día 1** y **Día 2** con horas. Pulsa **🗺️ Ver la ruta en el mapa**: se ve la línea que une los lugares.
 
-**✋ A mano (conectar Gemini, con el profesor):**
-1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** → menú **Claves de API** → **Crear clave de API** → nombre `taller-5b` → en *Elige un proyecto importado* deja **Proyecto de Gemini** (si no hay ninguno, **Crear proyecto**) → crear → **Copiar clave**. La clave empieza con `AQ.`: es el formato nuevo, es normal. No pulses **Configurar la facturación**: el nivel gratuito alcanza.
-2. El profesor la prueba una vez en `herramientas/probar-gemini.html` y se la pasa a cada grupo.
-3. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
+**✋ A mano (conectar Gemini):**
+1. El profesor te da la **clave del taller**.
+2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`.
 
 **✅ Comprueba (con Gemini):** **F5** → el chip dice **"🤖 Ruta con Gemini"**. Arma una ruta de **2 días**: cada parada trae un **consejo** propio y **todos los lugares son de su app**. En `panel.html` → **Resumen** → **F5**, **"Lo que más piden"** muestra los intereses que marcaste.
 
@@ -349,8 +348,7 @@ Elijan una idea y **escriban su propio prompt** para Copilot. Debe tener: **arch
 | "El mapa necesita internet" o el mapa sale gris | Leaflet y los mapas se descargan de internet. Revisa la conexión y pulsa **F5** |
 | El mapa del panel sale cortado | Cambia de vista y vuelve a **🗺️ Ubicar en el mapa** (necesita `invalidateSize()`) |
 | Un lugar no sale en el mapa | No tiene latitud y longitud. Ubícalo en **🗺️ Ubicar en el mapa** |
-| La ruta sale con "(Modo demo: Gemini no respondió)" | Revisa la clave en `ia.clave`. Si el error dice que el modelo no existe, cambia `modelo` por uno de aistudio.google.com. Si se agotó el límite, espera un minuto |
-| La consola dice `401` o `ACCESS_TOKEN_TYPE_UNSUPPORTED` | La clave falló. El profesor la prueba en `herramientas/probar-gemini.html`; si falla, la borra en aistudio.google.com, crea otra y la vuelve a pasar. Mientras tanto la app sigue en modo demo |
+| La ruta sale con "(Modo demo: Gemini no respondió)" | Revisa que pegaste la clave **completa** en `ia.clave` y pulsa **F5**. Si sigue igual, **avísale al profesor**. Mientras tanto la app funciona en modo demo |
 | Quiero empezar el pasaporte de cero | **F12** → **Application** → **Local Storage** → borra `loslicenciados_sellos` |
 | Aviso "⚠️ Supabase · …" | Revisa la URL y la clave de `supabase` en `js/config.js` y que ejecutaste **todo** `tablas.sql` |
 | Siguen los productos de la plantilla | Panel → **Configuración** → **Restablecer datos** |
