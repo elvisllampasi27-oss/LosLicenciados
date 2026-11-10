@@ -13,6 +13,13 @@ const CONFIG = {
     nombre: "Mi Emprendimiento",
   },
 
+  // ☁️ Base de datos en la nube (Supabase). Vacío = se guarda en el navegador.
+  // Supabase → Project Settings → API: copia la "Project URL" y la "Publishable key".
+  supabase: {
+    url: "",   // ej. "https://abcdefgh.supabase.co"
+    clave: "", // ej. "sb_publishable_..."
+  },
+
   // 2. Partes del software que usa tu equipo
   partes: {
     sitio: true,   // index.html → la cara que ve el cliente

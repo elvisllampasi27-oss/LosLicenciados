@@ -167,7 +167,7 @@
 ---
 
 ## ⏱️ 14:00 – 15:00 · Reparto de guías y arranque
-📽️ Voltea las guías. 🎤 *"Todas tienen la misma estructura. Lo que cambia son **sus** funciones. Empiecen por arriba y no salten pasos."*
+📽️ Voltea las guías. 🎤 *"Cada grupo tiene **su propia guía**, pensada para su negocio. Empiecen por arriba y no salten pasos."*
 
 ---
 

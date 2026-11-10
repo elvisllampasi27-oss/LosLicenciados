@@ -1,8 +1,8 @@
 /* =============================================================
    🗄️ DATOS — la ÚNICA puerta para guardar y leer información
-   Hoy guarda en el navegador (localStorage).
-   Más adelante se cambia SOLO este archivo para usar Supabase
-   (base de datos en la nube) y el resto del proyecto no cambia.
+   · Sin Supabase en config.js → guarda en el navegador (localStorage).
+   · Con CONFIG.supabase.url y .clave → guarda en la nube (Supabase).
+   El resto del proyecto no cambia: usa siempre Datos.listar/crear/…
    Por eso todas las funciones son "async": la nube tarda en responder.
    ============================================================= */
 
@@ -15,7 +15,12 @@ const Datos = (() => {
     mensajes: CONFIG.mensajesEjemplo || [],
   };
 
-  // ---------- Funciones internas (solo este archivo toca localStorage) ----------
+  // ¿Hay Supabase configurado en config.js? Si no, todo se guarda en el navegador.
+  const sb = CONFIG.supabase || {};
+  const nube = sb.url && sb.clave ? { url: sb.url.trim().replace(/\/+$/, ""), clave: sb.clave.trim() } : null;
+  const soloLocal = new Set(); // tablas que no existen en Supabase: se guardan en el navegador
+
+  // =============== MODO NAVEGADOR (localStorage) ===============
   function leer(tabla) {
     try {
       const guardado = localStorage.getItem(prefijo + tabla);
@@ -25,71 +30,131 @@ const Datos = (() => {
       return [];
     }
   }
-
   function escribir(tabla, filas) {
     localStorage.setItem(prefijo + tabla, JSON.stringify(filas));
   }
-
   function nuevoId() {
     return crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2);
   }
-
   function fila(datos, fecha = new Date()) {
     return { id: nuevoId(), created_at: fecha.toISOString(), ...datos };
   }
-
-  // La primera vez, carga los ejemplos repartidos en los últimos 7 días
+  // Fechas de ejemplo repartidas en los últimos 7 días (para que el gráfico tenga barras)
+  function fechaEjemplo(i) {
+    return new Date(Date.now() - 60000 - (i % 7) * 86400000 - i * 3600000);
+  }
   function sembrar(tabla) {
-    const ahora = Date.now() - 60000; // un minuto antes, para que lo nuevo quede primero
-    const filas = (ejemplos[tabla] || []).map((datos, i) =>
-      fila(datos, new Date(ahora - (i % 7) * 86400000 - i * 3600000))
-    );
+    const filas = (ejemplos[tabla] || []).map((datos, i) => fila(datos, fechaEjemplo(i)));
     escribir(tabla, filas);
     return filas;
   }
 
-  // ---------- Funciones públicas (CRUD) ----------
+  const local = {
+    listar: async (tabla) => [...(leer(tabla) ?? sembrar(tabla))].sort((a, b) => b.created_at.localeCompare(a.created_at)),
+    obtener: async (tabla, id) => (leer(tabla) ?? sembrar(tabla)).find((f) => f.id === id) || null,
+    crear: async (tabla, datos) => {
+      const filas = leer(tabla) ?? sembrar(tabla);
+      const nueva = fila(datos);
+      filas.push(nueva);
+      escribir(tabla, filas);
+      return nueva;
+    },
+    actualizar: async (tabla, id, cambios) => {
+      const filas = (leer(tabla) ?? sembrar(tabla)).map((f) => (f.id === id ? { ...f, ...cambios } : f));
+      escribir(tabla, filas);
+      return filas.find((f) => f.id === id);
+    },
+    eliminar: async (tabla, id) => escribir(tabla, (leer(tabla) ?? sembrar(tabla)).filter((f) => f.id !== id)),
+  };
 
-  // LEER: todos los registros, los más nuevos primero
-  async function listar(tabla) {
-    const filas = leer(tabla) ?? sembrar(tabla);
-    return [...filas].sort((a, b) => b.created_at.localeCompare(a.created_at));
+  // =============== MODO NUBE (Supabase, API REST con fetch, sin librerías) ===============
+  async function pedir(tabla, consulta = "", opciones = {}) {
+    const respuesta = await fetch(`${nube.url}/rest/v1/${tabla}${consulta}`, {
+      ...opciones,
+      headers: {
+        apikey: nube.clave,
+        Authorization: `Bearer ${nube.clave}`, // mismo valor que apikey: válido con claves nuevas y antiguas
+        "Content-Type": "application/json",
+        Prefer: "return=representation",
+      },
+    });
+    if (!respuesta.ok) {
+      const detalle = await respuesta.json().catch(() => ({}));
+      const error = new Error(detalle.message || `Error ${respuesta.status}`);
+      error.codigo = detalle.code;
+      error.estado = respuesta.status;
+      throw error;
+    }
+    return respuesta.status === 204 ? [] : respuesta.json();
   }
 
-  // LEER UNO por su id
-  async function obtener(tabla, id) {
-    return (leer(tabla) ?? sembrar(tabla)).find((f) => f.id === id) || null;
+  // En la nube, un campo vacío se guarda como null (las columnas date y numeric no aceptan "")
+  const limpiar = (datos) => Object.fromEntries(Object.entries(datos).map(([k, v]) => [k, v === "" ? null : v]));
+
+  const remoto = {
+    listar: (tabla) => pedir(tabla, "?select=*&order=created_at.desc"),
+    obtener: async (tabla, id) => (await pedir(tabla, `?select=*&id=eq.${encodeURIComponent(id)}`))[0] || null,
+    crear: async (tabla, datos) => (await pedir(tabla, "", { method: "POST", body: JSON.stringify(limpiar(datos)) }))[0],
+    actualizar: async (tabla, id, cambios) =>
+      (await pedir(tabla, `?id=eq.${encodeURIComponent(id)}`, { method: "PATCH", body: JSON.stringify(limpiar(cambios)) }))[0],
+    eliminar: (tabla, id) => pedir(tabla, `?id=eq.${encodeURIComponent(id)}`, { method: "DELETE" }),
+  };
+
+  // Elige el modo. Si una tabla no existe en Supabase (por ejemplo "diario"), esa tabla sigue en el navegador.
+  async function usar(accion, tabla, ...args) {
+    if (!nube || soloLocal.has(tabla)) return local[accion](tabla, ...args);
+    try {
+      return await remoto[accion](tabla, ...args);
+    } catch (error) {
+      if (["PGRST205", "42P01"].includes(error.codigo) || error.estado === 404) {
+        soloLocal.add(tabla);
+        console.warn(`La tabla "${tabla}" no existe en Supabase: se guarda en este navegador.`);
+        return local[accion](tabla, ...args);
+      }
+      const ayuda = error.codigo === "42501" || error.estado === 401 || error.estado === 403
+        ? " Revisa la clave en config.js y que ejecutaste TODO supabase/tablas.sql (incluye los permisos)."
+        : error.estado ? "" : " Revisa tu internet y la URL de Supabase en config.js.";
+      const mensaje = `Supabase · tabla "${tabla}": ${error.message}.${ayuda}`;
+      console.error(mensaje);
+      if (typeof Animaciones !== "undefined") Animaciones.aviso(mensaje, "⚠️");
+      if (accion === "listar") return []; // la página se muestra vacía en lugar de romperse
+      throw new Error(mensaje);
+    }
   }
 
-  // CREAR
-  async function crear(tabla, datos) {
-    const filas = leer(tabla) ?? sembrar(tabla);
-    const nueva = fila(datos);
-    filas.push(nueva);
-    escribir(tabla, filas);
-    return nueva;
-  }
+  // ---------- Funciones públicas (CRUD): iguales en los dos modos ----------
+  const listar = (tabla) => usar("listar", tabla);           // LEER todos (los más nuevos primero)
+  const obtener = (tabla, id) => usar("obtener", tabla, id);  // LEER uno
+  const crear = (tabla, datos) => usar("crear", tabla, datos); // CREAR
+  const actualizar = (tabla, id, cambios) => usar("actualizar", tabla, id, cambios); // ACTUALIZAR
+  const eliminar = (tabla, id) => usar("eliminar", tabla, id); // ELIMINAR
 
-  // ACTUALIZAR
-  async function actualizar(tabla, id, cambios) {
-    const filas = (leer(tabla) ?? sembrar(tabla)).map((f) => (f.id === id ? { ...f, ...cambios } : f));
-    escribir(tabla, filas);
-    return filas.find((f) => f.id === id);
-  }
-
-  // ELIMINAR
-  async function eliminar(tabla, id) {
-    escribir(tabla, (leer(tabla) ?? sembrar(tabla)).filter((f) => f.id !== id));
-  }
-
-  // REINICIAR: borra todas las tablas del proyecto (también las nuevas, como "pedidos")
-  // y vuelve a los datos de ejemplo
+  // REINICIAR: vuelve a los datos de ejemplo.
+  // Navegador: borra todas las tablas del proyecto. Nube: vacía la tabla principal y mensajes, y carga los ejemplos.
   async function reiniciar() {
     Object.keys(localStorage).filter((clave) => clave.startsWith(prefijo)).forEach((clave) => localStorage.removeItem(clave));
+    if (!nube) return;
+    for (const [tabla, filas] of Object.entries(ejemplos)) {
+      if (soloLocal.has(tabla)) continue;
+      try {
+        await pedir(tabla, "?id=not.is.null", { method: "DELETE" });
+        if (filas.length) {
+          const conFecha = filas.map((datos, i) => ({ ...limpiar(datos), created_at: fechaEjemplo(i).toISOString() }));
+          await pedir(tabla, "", { method: "POST", body: JSON.stringify(conFecha) });
+        }
+      } catch (error) {
+        if (["PGRST205", "42P01"].includes(error.codigo) || error.estado === 404) { soloLocal.add(tabla); continue; }
+        throw new Error(`Supabase · tabla "${tabla}": ${error.message}`);
+      }
+    }
   }
 
-  return { listar, obtener, crear, actualizar, eliminar, reiniciar };
+  // "nube" o "navegador": para mostrar dónde se guardan los datos
+  const modo = () => (nube ? "nube" : "navegador");
+
+  return { listar, obtener, crear, actualizar, eliminar, reiniciar, modo };
 })();
+
 
 /* ---------- Ayudas compartidas por el sitio y el panel ---------- */
 const Util = {

@@ -30,12 +30,6 @@ Abre `index.html` en el navegador. Para trabajar, abre la carpeta en **VS Code**
 
 ---
 
-## 📂 Guía de tu grupo
-
-Cada equipo tiene su propia guía, con los mismos pasos y **funciones propias de su emprendimiento**.
-👉 **[Busca tu grupo aquí](docs/grupos/README.md)** (versión `.md` para copiar los prompts y `.pdf` para imprimir).
-
----
 
 ## 🧩 Partes del software
 
@@ -55,7 +49,8 @@ LosLicenciados/
 │   ├── animaciones.js    ✨ Esfera de puntos, apariciones, contadores, avisos
 │   ├── cliente.js        🧠 Lógica del sitio
 │   └── panel.js          🧠 Lógica del panel
-├── docs/                 📘 Guía del alumno, guion docente y guías por grupo (docs/grupos/)
+├── docs/                 📘 Guía del alumno, guion y exposición docente
+├── supabase/             ☁️ SQL de ejemplo para la base de datos
 └── .github/
     └── copilot-instructions.md   🤖 Reglas que Copilot lee automáticamente
 ```
@@ -96,8 +91,14 @@ Después de cambiar la configuración: **Panel → Configuración → Restablece
 
 ---
 
-## ☁️ Próximamente
-- **Supabase:** cambiar solo el interior de `data.js` para guardar en la nube.
+## ☁️ Base de datos en la nube (Supabase)
+La plantilla ya está lista: sin configurar, guarda en el navegador; con Supabase, guarda en la nube y todo el equipo ve los mismos datos.
+1. En supabase.com crea un proyecto y, en **SQL Editor**, ejecuta el SQL de tus tablas (modelo: [`supabase/ejemplo-productos.sql`](supabase/ejemplo-productos.sql)).
+2. En `js/config.js` completa `supabase.url` (Project URL) y `supabase.clave` (Publishable key).
+3. Panel → **Configuración → Restablecer datos**. La insignia del panel dirá **☁️ Supabase**.
+> ⚠️ Configuración de taller: las tablas quedan abiertas a quien tenga la clave. No usar en producción.
+
+## 🔜 Próximamente
 - **App móvil:** convertir el sitio en PWA instalable.
 - **IA en la app**, a través de Supabase, para no exponer claves.
 

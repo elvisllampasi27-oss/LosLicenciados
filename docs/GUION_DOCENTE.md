@@ -68,7 +68,7 @@
 - [ ] Cada equipo con al menos **1 cuenta de GitHub** (Copilot) y **1 cuenta de Gmail** (Gemini) o de **Claude**.
 - [ ] Tener la **ficha de cada equipo** en `.docx` o PDF a mano.
 - [ ] Preparar tu **versión profesional de Ayllu Cuida** para la comparativa.
-- [ ] Imprimir la **guía de cada grupo** (`docs/grupos/pdf/`). El grupo 08 trabaja **Ruta Huamanga** (tema asignado): su guía empieza creando la ficha con la IA.
+- [ ] Tener lista la **guía de cada grupo**. El grupo 08 trabaja **Ruta Huamanga** (tema asignado): su guía empieza creando la ficha con la IA.
 
 ---
 

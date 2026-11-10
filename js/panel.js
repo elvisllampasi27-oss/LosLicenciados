@@ -24,6 +24,9 @@ $("#boton-nuevo").textContent = `＋ ${textoNuevo}`;
 $("#grafico-titulo").textContent = `${M.nombre} creados por día`;
 $("#buscador-tabla").placeholder = `Buscar ${M.nombre.toLowerCase()}…`;
 
+// Dónde se guardan los datos: en la nube (Supabase) o en este navegador
+$(".superior__estado").textContent = Datos.modo() === "nube" ? "☁️ Supabase" : "💾 Navegador";
+
 const hora = new Date().getHours();
 $("#saludo").textContent = (hora < 12 ? "Buenos días" : hora < 19 ? "Buenas tardes" : "Buenas noches") + ", equipo";
 
