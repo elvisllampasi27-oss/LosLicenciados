@@ -82,9 +82,10 @@ const Datos = (() => {
     escribir(tabla, (leer(tabla) ?? sembrar(tabla)).filter((f) => f.id !== id));
   }
 
-  // REINICIAR: borra todo y vuelve a los datos de ejemplo
+  // REINICIAR: borra todas las tablas del proyecto (también las nuevas, como "pedidos")
+  // y vuelve a los datos de ejemplo
   async function reiniciar() {
-    Object.keys(ejemplos).forEach((tabla) => localStorage.removeItem(prefijo + tabla));
+    Object.keys(localStorage).filter((clave) => clave.startsWith(prefijo)).forEach((clave) => localStorage.removeItem(clave));
   }
 
   return { listar, obtener, crear, actualizar, eliminar, reiniciar };
@@ -101,7 +102,21 @@ const Util = {
   // Evita que un texto escrito por el usuario se interprete como HTML
   seguro: (texto) => String(texto ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])),
   soles: (n) => (n === "" || n == null || isNaN(n) ? "" : "S/ " + Number(n).toFixed(2)),
-  fecha: (iso) => new Date(iso).toLocaleDateString("es-PE", { day: "2-digit", month: "2-digit", year: "numeric" }),
+  // Fecha para mostrar (día/mes/año).
+  // Un campo date ("2026-11-15") se arma separando el texto: con new Date() se leería
+  // en hora universal y en Perú saldría el día anterior. Un ISO con hora usa la hora local.
+  fecha: (valor) => {
+    const texto = String(valor ?? "");
+    if (!texto) return "";
+    if (/^\d{4}-\d{2}-\d{2}$/.test(texto)) return texto.split("-").reverse().join("/");
+    return new Date(texto).toLocaleDateString("es-PE", { day: "2-digit", month: "2-digit", year: "numeric" });
+  },
+  // Hoy (o dentro de N días) como "AAAA-MM-DD" en hora local, para comparar con campos date
+  hoy: (dias = 0) => {
+    const d = new Date();
+    d.setDate(d.getDate() + dias);
+    return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, "0"), String(d.getDate()).padStart(2, "0")].join("-");
+  },
   hace: (iso) => {
     const min = Math.round((Date.now() - new Date(iso)) / 60000);
     if (min < 1) return "Ahora";

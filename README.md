@@ -25,8 +25,15 @@ git clone https://github.com/elvisllampasi27-oss/LosLicenciados.git
 Abre `index.html` en el navegador. Para trabajar, abre la carpeta en **VS Code** con **GitHub Copilot**.
 
 📘 **Alumnos:** [docs/GUIA_ALUMNO.md](docs/GUIA_ALUMNO.md)
-🎤 **Docentes:** [docs/GUION_DOCENTE.md](docs/GUION_DOCENTE.md)
+🎤 **Docentes:** [docs/GUION_DOCENTE.md](docs/GUION_DOCENTE.md) · exposición de 15 min: [docs/EXPOSICION_DOCENTE.md](docs/EXPOSICION_DOCENTE.md)
 🧩 **Catálogo de componentes:** [componentes.html](componentes.html)
+
+---
+
+## 📂 Guía de tu grupo
+
+Cada equipo tiene su propia guía, con los mismos pasos y **funciones propias de su emprendimiento**.
+👉 **[Busca tu grupo aquí](docs/grupos/README.md)** (versión `.md` para copiar los prompts y `.pdf` para imprimir).
 
 ---
 
@@ -48,7 +55,7 @@ LosLicenciados/
 │   ├── animaciones.js    ✨ Esfera de puntos, apariciones, contadores, avisos
 │   ├── cliente.js        🧠 Lógica del sitio
 │   └── panel.js          🧠 Lógica del panel
-├── docs/                 📘 Guía del alumno y guion docente
+├── docs/                 📘 Guía del alumno, guion docente y guías por grupo (docs/grupos/)
 └── .github/
     └── copilot-instructions.md   🤖 Reglas que Copilot lee automáticamente
 ```

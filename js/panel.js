@@ -130,7 +130,7 @@ function celda(registro, campo) {
 
 function pintarTabla() {
   const texto = $("#buscador-tabla").value.trim().toLowerCase();
-  const estado = $("#filtro-estado").value;
+  const estado = $("#filtro-estado")?.value || ""; // no existe si no hay campo con rol "estado"
   const visibles = registros.filter((r) =>
     JSON.stringify(r).toLowerCase().includes(texto) && (!estado || r[campoEstado.nombre] === estado)
   );

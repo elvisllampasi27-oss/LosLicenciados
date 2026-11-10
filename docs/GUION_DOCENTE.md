@@ -68,7 +68,7 @@
 - [ ] Cada equipo con al menos **1 cuenta de GitHub** (Copilot) y **1 cuenta de Gmail** (Gemini) o de **Claude**.
 - [ ] Tener la **ficha de cada equipo** en `.docx` o PDF a mano.
 - [ ] Preparar tu **versión profesional de Ayllu Cuida** para la comparativa.
-- [ ] Equipo de la **ficha 8** (vacía): traer su idea en 3 líneas o integrarse a otro equipo.
+- [ ] Imprimir la **guía de cada grupo** (`docs/grupos/pdf/`). El grupo 08 trabaja **Ruta Huamanga** (tema asignado): su guía empieza creando la ficha con la IA.
 
 ---
 
@@ -192,5 +192,5 @@ Luego 2 o 3 equipos muestran en 1 minuto: emprendimiento → qué partes usan �
 | 05 Biblioteca virtual | | | | | | | |
 | 06 Raíces locales | | | | | | | |
 | 07 Ayllu Cuida | | | | | | | |
-| 08 (por definir) | | | | | | | |
+| 08 Ruta Huamanga | | | | | | | |
 | 09 Planly | | | | | | | |

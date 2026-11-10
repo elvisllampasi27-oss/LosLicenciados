@@ -65,6 +65,8 @@ emprendimiento. Vamos a adaptar una plantilla web que ya funciona y tiene dos ca
 - PANEL DE CONTROL: resumen con indicadores y gráfico, una tabla para crear/editar/eliminar
   registros, y bandeja de mensajes.
 
+Tu tarea: decide qué partes, datos y textos necesita nuestra app.
+
 Responde SOLO con el formato siguiente, en Markdown, sin frases antes ni después y sin
 agregar ni quitar secciones. Si falta información, propón algo coherente y márcalo con ⚠️.
 Por privacidad, NUNCA incluyas teléfonos, DNI ni direcciones.

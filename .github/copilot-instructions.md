@@ -26,3 +26,5 @@ Este proyecto es una plantilla web educativa (I.E. "Los Licenciados", 5.º de se
 7. En `config.js`, los tipos de campo válidos son: `text`, `textarea`, `number`, `date`, `select` (con `opciones`). Roles válidos: `titulo` (exactamente uno), `descripcion`, `categoria`, `estado`, `precio`, `icono`.
 8. Nombres de variables, funciones, comentarios y textos en español. Comentarios breves.
 9. Al terminar, lista los archivos modificados y cómo probar el cambio.
+10. Fechas: para mostrar usa `Util.fecha(valor)` (sirve para campos `date` y para `created_at`). Para comparar con un campo `date` usa `Util.hoy()` o `Util.hoy(7)` (texto "AAAA-MM-DD" en hora local). Nunca `toISOString()` para la fecha de hoy: en Perú, desde las 19:00 da el día siguiente.
+11. Un campo sin rol se lee por el nombre que guarda `config.js` (por ejemplo `CONFIG.mapa.latitud`), nunca con el nombre escrito en `cliente.js` o `panel.js`.
