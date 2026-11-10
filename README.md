@@ -40,6 +40,7 @@ Abre `index.html` en el navegador. Para trabajar, abre la carpeta en **VS Code**
 | 06 | 🧺 Raíces Locales | [06-raices-locales.md](docs/grupos/06-raices-locales.md) |
 | 07 | 🌻 Ayllu Cuida | [07-ayllu-cuida.md](docs/grupos/07-ayllu-cuida.md) |
 | 08 | 🗺️ Ruta Huamanga | [08-ruta-huamanga.md](docs/grupos/08-ruta-huamanga.md) |
+| 09 | ✅ Planly | [09-planly.md](docs/grupos/09-planly.md) |
 
 ---
 
