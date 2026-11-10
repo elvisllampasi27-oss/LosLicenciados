@@ -14,7 +14,7 @@ const CONFIG = {
   },
 
   // ☁️ Base de datos en la nube (Supabase). Vacío = se guarda en el navegador.
-  // Supabase → Project Settings → API: copia la "Project URL" y la "Publishable key".
+  // Supabase → Project Overview: copia la URL (botón Copy). Botón "Connect" o Project Settings → API Keys: copia la "Publishable key".
   supabase: {
     url: "",   // ej. "https://abcdefgh.supabase.co"
     clave: "", // ej. "sb_publishable_..."

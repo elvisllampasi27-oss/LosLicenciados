@@ -143,17 +143,17 @@ para las tres tablas. No modifiques ningún otro archivo.
 **✅ Comprueba:** existe `supabase/tablas.sql` con tres `create table`: `preguntas`, `mensajes` y `resultados`.
 
 **✋ A mano (crear el proyecto):**
-1. supabase.com → **Start your project** → **Continue with GitHub**.
-2. **New project** → Name `tutor-5b` → **Generate a password** (guárdala) → Region **South America (São Paulo)** → **Create new project**. Espera a que termine de cargar.
-3. **SQL Editor** → **New query** → pega **todo** `supabase/tablas.sql` → **Run**.
+1. supabase.com → **Start your project** → **Continue with GitHub** → **Authorize supabase**.
+2. Solo la primera vez: **New organization** → deja el nombre, Type **Personal**, Plan **Free - $0/month** → **Create organization**.
+3. **New project** → Name `tutor-5b` → **Generate a password** (guárdala) → Region: deja **Americas** → en *Security* deja marcado **Enable Data API** → **Create new project**. Espera a que diga **Healthy**.
+4. Menú de la izquierda → **SQL Editor** (ícono `>_`) → pega **todo** `supabase/tablas.sql` → **Run** (o `Ctrl + Enter`). Si sale un aviso de *destructive operation*, pulsa **Run this query**: es por los `drop policy if exists`, no borra datos.
 
 **✅ Comprueba:** dice **Success**. En **Table Editor** aparecen `preguntas`, `mensajes` y `resultados`.
 
 **✋ A mano (conectar la app):**
-1. En Supabase pulsa **Connect** (arriba) o ve a **Project Settings → API**.
-2. Copia la **Project URL** y pégala en `js/config.js`, en `supabase` → `url: ""`.
-3. Copia la **Publishable key** (`sb_publishable_…`) y pégala en `clave: ""` de `supabase`. Guarda con `Ctrl + S`.
-4. Abre `panel.html` → **Configuración** → **Restablecer datos**.
+1. En **Project Overview** (🏠) está la URL `https://….supabase.co`: pulsa **Copy** y pégala en `js/config.js`, en `supabase` → `url: ""`.
+2. Pulsa el botón verde **Connect** (arriba) o ve a **Project Settings → API Keys** y copia la **Publishable key** (`sb_publishable_…`). Pégala en `clave: ""` de `supabase`. Guarda con `Ctrl + S`.
+3. Abre `panel.html` → **Configuración** → **Restablecer datos**.
 
 **✅ Comprueba:** arriba en el panel dice **☁️ Supabase**, y en **Table Editor** → `preguntas` aparecen las 8 preguntas.
 
@@ -251,8 +251,8 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 **✅ Comprueba (modo demo):** `index.html` → **F5** → menú **Tutor**. El chip dice **"Tutor (modo demo)"**. Escribe una de sus palabras clave, por ejemplo `fracciones`: responde con la fórmula dibujada.
 
 **✋ A mano (conectar Gemini, con el profesor):**
-1. El **profesor** entra a **aistudio.google.com** con su cuenta de Google → **Get API key** → **Create API key** → copia la clave.
-2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`.
+1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** con su cuenta de Google → **Get API key** → **Create API key** → copia la clave y se la pasa a cada grupo.
+2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
 
 **✅ Comprueba (con Gemini):** **F5** → el chip dice **"🤖 Tutor con Gemini"**. Pregunta, por ejemplo: `¿Cómo calculo el área de un círculo de radio 3?`. Responde Gemini, con la fórmula dibujada. Haz otra pregunta que dependa de la anterior (`¿y si el radio es 5?`): recuerda la conversación.
 

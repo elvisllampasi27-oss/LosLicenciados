@@ -145,17 +145,17 @@ para las tres tablas. No modifiques ningún otro archivo.
 **✅ Comprueba:** existe `supabase/tablas.sql` con tres `create table`: `materiales`, `mensajes` y `valoraciones`.
 
 **✋ A mano (crear el proyecto):**
-1. supabase.com → **Start your project** → **Continue with GitHub**.
-2. **New project** → Name `biblioteca-5b` → **Generate a password** (guárdala) → Region **South America (São Paulo)** → **Create new project**. Espera a que termine de cargar.
-3. **SQL Editor** → **New query** → pega **todo** `supabase/tablas.sql` → **Run**.
+1. supabase.com → **Start your project** → **Continue with GitHub** → **Authorize supabase**.
+2. Solo la primera vez: **New organization** → deja el nombre, Type **Personal**, Plan **Free - $0/month** → **Create organization**.
+3. **New project** → Name `biblioteca-5b` → **Generate a password** (guárdala) → Region: deja **Americas** → en *Security* deja marcado **Enable Data API** → **Create new project**. Espera a que diga **Healthy**.
+4. Menú de la izquierda → **SQL Editor** (ícono `>_`) → pega **todo** `supabase/tablas.sql` → **Run** (o `Ctrl + Enter`). Si sale un aviso de *destructive operation*, pulsa **Run this query**: es por los `drop policy if exists`, no borra datos.
 
 **✅ Comprueba:** dice **Success**. En **Table Editor** aparecen `materiales`, `mensajes` y `valoraciones`.
 
 **✋ A mano (conectar la app):**
-1. En Supabase pulsa **Connect** (arriba) o ve a **Project Settings → API**.
-2. Copia la **Project URL** y pégala en `js/config.js`, en `supabase` → `url: ""`.
-3. Copia la **Publishable key** (`sb_publishable_…`) y pégala en `clave: ""` de `supabase`. Guarda con `Ctrl + S`.
-4. Abre `panel.html` → **Configuración** → **Restablecer datos**.
+1. En **Project Overview** (🏠) está la URL `https://….supabase.co`: pulsa **Copy** y pégala en `js/config.js`, en `supabase` → `url: ""`.
+2. Pulsa el botón verde **Connect** (arriba) o ve a **Project Settings → API Keys** y copia la **Publishable key** (`sb_publishable_…`). Pégala en `clave: ""` de `supabase`. Guarda con `Ctrl + S`.
+3. Abre `panel.html` → **Configuración** → **Restablecer datos**.
 
 **✅ Comprueba:** arriba en el panel dice **☁️ Supabase**, y en **Table Editor** → `materiales` aparecen los 8 materiales.
 
@@ -246,8 +246,8 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 **✅ Comprueba (modo demo):** `index.html` → **F5** → menú **Bibliotecario**. El chip dice **"(modo demo)"**. Pulsa un ejemplo: aparecen materiales de la biblioteca con su botón **Abrir ↗**. Escribe algo sin relación (`quiero cocinar pachamanca`): dice que no encontró materiales.
 
 **✋ A mano (conectar Gemini, con el profesor):**
-1. El **profesor** entra a **aistudio.google.com** con su cuenta de Google → **Get API key** → **Create API key** → copia la clave.
-2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`.
+1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** con su cuenta de Google → **Get API key** → **Create API key** → copia la clave y se la pasa a cada grupo.
+2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
 
 **✅ Comprueba (con Gemini):** **F5** → el chip dice **"🤖 Bibliotecario con Gemini"**. Escribe `Quiero prepararme en números para Ingeniería`: Gemini recomienda materiales **de su biblioteca**, cada uno con el motivo. Ningún enlace es inventado: todos abren materiales de la tabla.
 
