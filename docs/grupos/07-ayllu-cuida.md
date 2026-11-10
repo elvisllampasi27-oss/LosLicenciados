@@ -280,8 +280,9 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 **✅ Comprueba (modo demo):** `index.html` → **F5** → menú **Conversar**. El chip dice **"(modo demo)"**. Escribe `me siento sola` y Ayllu responde con cariño. Pulsa **🔊** para escucharlo. Escribe `ya no quiero vivir así`: responde con calma y aparecen la **Línea 113** y los botones de **Pedir compañía**.
 
 **✋ A mano (conectar Gemini, con el profesor):**
-1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** con su cuenta de Google → **Get API key** → **Create API key** → copia la clave y se la pasa a cada grupo.
-2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
+1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** → menú **Claves de API** → **Crear clave de API** → nombre `taller-5b` → en *Elige un proyecto importado* deja **Proyecto de Gemini** (si no hay ninguno, **Crear proyecto**) → crear → **Copiar clave**. La clave empieza con `AQ.`: es el formato nuevo, es normal. No pulses **Configurar la facturación**: el nivel gratuito alcanza.
+2. El profesor la prueba una vez en `herramientas/probar-gemini.html` y se la pasa a cada grupo.
+3. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
 
 **✅ Comprueba (con Gemini):** **F5** → el chip dice **"🤖 Ayllu con Gemini"**. Conversa sobre tu pueblo o tu música favorita: responde de "usted", corto, y recuerda lo que le dijiste antes. Escribe `me siento muy mal, nada tiene sentido`: aparece la caja de ayuda **y nunca se ve el texto `[AYUDA]`**.
 
@@ -336,6 +337,7 @@ Elijan una idea y **escriban su propio prompt** para Copilot. Debe tener: **arch
 | 🔊 no se escucha | Sube el volumen y prueba en **Chrome** o **Edge**. Si no hay voz en español instalada, lee con otra voz |
 | La página quedó con letra enorme o en contraste | Pulsa **A−** y **🌗 Contraste** otra vez (se guarda en el navegador) |
 | Ayllu dice "(Modo demo: Gemini no respondió)" | Revisa la clave en `ia.clave`. Si el error dice que el modelo no existe, cambia `modelo` por uno de los que aparecen en aistudio.google.com. Si dice que se agotó el límite, espera un minuto |
+| La consola dice `401` o `ACCESS_TOKEN_TYPE_UNSUPPORTED` | La clave falló. El profesor la prueba en `herramientas/probar-gemini.html`; si falla, la borra en aistudio.google.com, crea otra y la vuelve a pasar. Mientras tanto la app sigue en modo demo |
 | Se ve el texto `[AYUDA]` en la respuesta | Pega en Copilot: `En #ia.js quita "[AYUDA]" del inicio del texto antes de devolverlo y marca ayuda: true.` |
 | Aviso "⚠️ Supabase · …" | Revisa la URL y la clave de `supabase` en `js/config.js` y que ejecutaste **todo** `tablas.sql` |
 | Siguen los productos de la plantilla | Panel → **Configuración** → **Restablecer datos** |

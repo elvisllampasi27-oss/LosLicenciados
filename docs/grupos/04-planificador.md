@@ -211,8 +211,9 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 **✅ Comprueba (modo demo):** `panel.html` → **F5** → menú **Mi plan** → **🤖 Arma mi plan con IA**. Dice **"Modo demo"**. Escribe una carrera, elige el área, **2** temas por día → **Crear mi plan**. Aparecen **6 temas nuevos** en la tabla, con fechas de hoy, mañana y pasado mañana.
 
 **✋ A mano (conectar Gemini, con el profesor):**
-1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** con su cuenta de Google → **Get API key** → **Create API key** → copia la clave y se la pasa a cada grupo.
-2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
+1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** → menú **Claves de API** → **Crear clave de API** → nombre `taller-5b` → en *Elige un proyecto importado* deja **Proyecto de Gemini** (si no hay ninguno, **Crear proyecto**) → crear → **Copiar clave**. La clave empieza con `AQ.`: es el formato nuevo, es normal. No pulses **Configurar la facturación**: el nivel gratuito alcanza.
+2. El profesor la prueba una vez en `herramientas/probar-gemini.html` y se la pasa a cada grupo.
+3. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
 
 **✅ Comprueba (con Gemini):** **F5** → **🤖 Arma mi plan con IA**. Ahora dice **"Gemini propondrá los temas…"**. Escribe `Ingeniería de Sistemas`, área **Ingenierías** → **Crear mi plan**. El aviso dice **"con Gemini"** y aparecen temas distintos a los del modo demo, repartidos en el calendario.
 
@@ -312,6 +313,7 @@ Elijan una idea y **escriban su propio prompt** para Copilot. Debe tener: **arch
 | Copilot cambió algo que no pedí | **Undo** y pega otra vez el prompt |
 | Página en blanco o un botón no hace nada | **F12** → **Console** → copia el error rojo → pega en Copilot: `Tengo este error en la consola. Diagnostica la causa y aplica la corrección mínima.` y el error debajo |
 | El plan dice "modo demo" aunque puse la clave | Revisa la clave en `ia.clave`. **F12** → **Console** muestra el motivo. Si el modelo no existe, cambia `modelo` por uno de aistudio.google.com. Si se agotó el límite, espera un minuto |
+| La consola dice `401` o `ACCESS_TOKEN_TYPE_UNSUPPORTED` | La clave falló. El profesor la prueba en `herramientas/probar-gemini.html`; si falla, la borra en aistudio.google.com, crea otra y la vuelve a pasar. Mientras tanto la app sigue en modo demo |
 | El plan no crea ningún tema | Revisa que `fechaExamen` sea una fecha futura con formato `AAAA-MM-DD` |
 | "Hoy y esta semana" sale vacío | Solo muestra temas con fecha y que no estén en Estudiado. Crea un plan en **Mi plan** |
 | Aviso "⚠️ Supabase · …" | Revisa la URL y la clave de `supabase` en `js/config.js` y que ejecutaste **todo** `tablas.sql` |

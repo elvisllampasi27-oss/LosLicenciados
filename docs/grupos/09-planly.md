@@ -269,8 +269,9 @@ Cambia SOLO esos archivos. Al final lista los archivos cambiados y cómo probarl
 **✅ Comprueba (modo demo):** **Tablero** → **F5**. El chip dice **"Modo demo"**. Escribe `exposición de biología el jueves, es muy importante` → **Anotar**. La propuesta dice **Exposición de biología · Ciencias · (fecha del jueves) · Alta**. **Guardar tarea**: aparece en **Pendiente**. Prueba también `leer el cuento para mañana sin apuro` (Comunicación, mañana, **Baja**).
 
 **✋ A mano (conectar Gemini, con el profesor):**
-1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** con su cuenta de Google → **Get API key** → **Create API key** → copia la clave y se la pasa a cada grupo.
-2. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
+1. El **profesor** crea **una sola clave para todo el salón** (es solo para el taller; al final la borra): **aistudio.google.com** → menú **Claves de API** → **Crear clave de API** → nombre `taller-5b` → en *Elige un proyecto importado* deja **Proyecto de Gemini** (si no hay ninguno, **Crear proyecto**) → crear → **Copiar clave**. La clave empieza con `AQ.`: es el formato nuevo, es normal. No pulses **Configurar la facturación**: el nivel gratuito alcanza.
+2. El profesor la prueba una vez en `herramientas/probar-gemini.html` y se la pasa a cada grupo.
+3. Pégala en `js/config.js`, en `ia` → `clave: ""`. Guarda con `Ctrl + S`. No hay que instalar ni ejecutar nada.
 
 **✅ Comprueba (con Gemini):** **F5** → el chip dice **"Con Gemini"**. Escribe algo más libre, por ejemplo `el profe de química dejó un informe de laboratorio para el próximo viernes y vale nota`. Gemini entiende el curso (**Ciencias**), la fecha del viernes y la prioridad.
 
@@ -337,5 +338,6 @@ Elijan una idea y **escriban su propio prompt** para Copilot. Debe tener: **arch
 | El semáforo marca mal los días | Revisa que la fecha se guarde como `AAAA-MM-DD` y que `semaforo()` use la fecha local (no `new Date("AAAA-MM-DD")` directo, que la toma en otra zona horaria) |
 | No suena el pitido | Sube el volumen. El navegador solo deja sonar después de que tocaste un botón de la página |
 | "Anota como hablas" dice "(Modo demo: Gemini no respondió)" | Revisa la clave en `ia.clave`. Si el error dice que el modelo no existe, cambia `modelo` por uno de aistudio.google.com. Si se agotó el límite, espera un minuto |
+| La consola dice `401` o `ACCESS_TOKEN_TYPE_UNSUPPORTED` | La clave falló. El profesor la prueba en `herramientas/probar-gemini.html`; si falla, la borra en aistudio.google.com, crea otra y la vuelve a pasar. Mientras tanto la app sigue en modo demo |
 | Aviso "⚠️ Supabase · …" | Revisa la URL y la clave de `supabase` en `js/config.js` y que ejecutaste **todo** `tablas.sql` |
 | Siguen los productos de la plantilla | Panel → **Configuración** → **Restablecer datos** |
