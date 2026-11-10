@@ -28,6 +28,19 @@ Abre `index.html` en el navegador. Para trabajar, abre la carpeta en **VS Code**
 🎤 **Docentes:** [docs/GUION_DOCENTE.md](docs/GUION_DOCENTE.md) · exposición de 15 min: [docs/EXPOSICION_DOCENTE.md](docs/EXPOSICION_DOCENTE.md)
 🧩 **Catálogo de componentes:** [componentes.html](componentes.html)
 
+### 📂 Sesión 07 · Guía de cada grupo (base de datos + funciones propias)
+
+| Grupo | Emprendimiento | Guía |
+|---|---|---|
+| 01 | 🎓 Tutor Virtual con IA | [01-tutor-virtual.md](docs/grupos/01-tutor-virtual.md) |
+| 02 | 🧭 IA Responsable | [02-ia-responsable.md](docs/grupos/02-ia-responsable.md) |
+| 03 | 🚨 A.D.C | [03-adc.md](docs/grupos/03-adc.md) |
+| 04 | 📅 Planificador para postulantes | [04-planificador.md](docs/grupos/04-planificador.md) |
+| 05 | 📚 Biblioteca Virtual | [05-biblioteca.md](docs/grupos/05-biblioteca.md) |
+| 06 | 🧺 Raíces Locales | [06-raices-locales.md](docs/grupos/06-raices-locales.md) |
+| 07 | 🌻 Ayllu Cuida | [07-ayllu-cuida.md](docs/grupos/07-ayllu-cuida.md) |
+| 08 | 🗺️ Ruta Huamanga | [08-ruta-huamanga.md](docs/grupos/08-ruta-huamanga.md) |
+
 ---
 
 
