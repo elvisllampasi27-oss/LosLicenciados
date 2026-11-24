@@ -1,11 +1,11 @@
 # 🗺️ Sesión 08 · Grupo 08 · Ruta Huamanga en internet y en el celular
 
-**Hoy:** su app sale a la calle. La van a **publicar en internet** con su propia dirección, con el **panel protegido** por usuario y contraseña, y la van a **instalar en el celular**. Además le agregan **2 funciones que solo tienen sentido caminando por Huamanga**: **📍 ¿Qué hay cerca de mí?** (el GPS ordena los lugares por distancia) y **🧭 Cómo llegar** (abre la ruta a pie en el mapa del celular).
+**Hoy:** su app sale a la calle. La van a **publicar en internet** con su propia dirección para que cualquiera la abra desde cualquier lugar, y la van a **instalar en el celular**. El **panel se queda en su PC**: es la herramienta del equipo y no se publica (buena práctica). Además le agregan **2 funciones que solo tienen sentido caminando por Huamanga**: **📍 ¿Qué hay cerca de mí?** (el GPS ordena los lugares por distancia) y **🧭 Cómo llegar** (abre la ruta a pie en el mapa del celular).
 
 | Rol | Quién | Qué hace |
 |---|---|---|
 | 🧑‍💻 Piloto | 1 integrante (cambia en cada paso) | Pega los prompts en Copilot, en la PC del grupo |
-| ☁️ Publicador | 1 integrante, en otra PC | Crea el repositorio, sube los archivos y publica |
+| ☁️ Publicador | 1 integrante, en otra PC | Crea el repositorio, sube los archivos (sin el panel) y publica |
 | 📱 Probadores | Todos los demás, con su celular | Prueban cada función en su celular y avisan qué falla |
 
 **Cómo usar esta guía:**
@@ -28,41 +28,23 @@
 
 ---
 
-## Paso 2 · 🔐 Acceso al panel (Piloto)
+## Paso 2 · 🏠 El panel se queda en su PC (Piloto)
+Lo que se publica es **el sitio** (`index.html`). El **panel** (`panel.html`) solo lo usa el equipo desde su PC, con doble clic, y como los dos usan el mismo Supabase, lo que guardan en el panel aparece en el sitio publicado.
+
 **🛠️ Pega en Copilot:**
 ```
-Protege el panel con un acceso de usuario y contraseña SIMULADO (es solo para pruebas):
-- En #config.js agrega, después de supabase, CONFIG.acceso = { usuario: "equipo",
-  clave: "taller2026" } con un comentario que diga que es simulado y que cualquiera puede
-  leerlo en este archivo.
-- En #index.html quita todos los enlaces a panel.html (el botón "Panel ↗" del menú y
-  cualquier otro). El panel ya no se muestra en el sitio.
-- En #panel.html, justo después de <body>, agrega una <section class="acceso" id="acceso"
-  aria-label="Acceso del equipo"> que tape toda la pantalla, con un formulario
-  (class="tarjeta") con el título "🔐 Acceso del equipo", los campos Usuario y Contraseña
-  (con label, autocomplete username y current-password), un párrafo de error con
-  role="alert", el botón "Entrar" y un enlace "← Volver al sitio" a index.html. En la barra
-  superior, junto a "＋ Nuevo", agrega un botón "Salir" con id="cerrar-sesion".
-- En #panel.js, al inicio: si sessionStorage tiene "loslicenciados_sesion" = "activa", quita
-  la pantalla de acceso; si no, pon el foco en el usuario. Al enviar el formulario, si el
-  usuario y la clave son iguales a CONFIG.acceso, guarda la sesión en sessionStorage, quita
-  la pantalla y muestra el aviso "Bienvenido, [usuario]"; si no, muestra "Usuario o
-  contraseña incorrectos.", borra la contraseña y pon el foco en ella. "Salir" borra la
-  sesión y recarga la página. (sessionStorage se usa aquí directamente: la sesión se olvida
-  al cerrar la pestaña.)
-- Estilos en #panel.css con las variables de base.css: la pantalla de acceso fija, encima
-  de todo, con el fondo de la página y el formulario centrado (máximo 380 px).
-Cambia SOLO esos 5 archivos. Al final lista los archivos cambiados y cómo probarlo.
+El panel ya no se publicará en internet: solo se usa desde la PC del equipo.
+En #index.html quita todos los enlaces a panel.html (el botón "Panel ↗" del menú y
+cualquier otro). En #cliente.js quita el código que solo servía para esos enlaces, si lo
+hay. No cambies panel.html.
+Cambia SOLO esos 2 archivos. Al final lista los archivos cambiados y cómo probarlo.
 ```
-
-**✋ A mano:** cambien el usuario y la contraseña en `js/config.js` → `acceso` por unos del grupo. **No usen una contraseña que usen en otro lado:** cualquiera la puede leer en ese archivo.
 
 **✅ Comprueba:**
 1. `index.html` → **F5**: el menú ya **no** tiene "Panel".
-2. Abre `panel.html`: aparece **🔐 Acceso del equipo**. Con una contraseña mala dice **"Usuario o contraseña incorrectos."**
-3. Entra con la buena: aparece el panel. **Salir**: vuelve a pedir acceso.
+2. `panel.html` con doble clic sigue abriendo el panel como siempre.
 
-> 💡 **Para pensar:** ¿por qué esto **no** es seguridad de verdad? (La contraseña está en `config.js` y se ve con **F12**. Una app real usa un login con servidor, como **Supabase Auth**.)
+> 💡 **Para pensar:** ¿por qué es mejor no publicar el panel? (Quien tenga la dirección podría cambiar o borrar sus datos. La herramienta del equipo se queda en el equipo.)
 
 ---
 
@@ -77,7 +59,8 @@ Convierte el proyecto en una app instalable (PWA):
   purpose "any"), img/icono-512.png (512x512, purpose "any") e img/icono-512.png
   (512x512, purpose "maskable").
 - Crea sw.js (junto a index.html), un service worker con una constante VERSION = "app-v1" y
-  la lista de los archivos propios del proyecto (html, css, js, manifest e íconos). En
+  la lista de los archivos del SITIO (index.html, base.css, cliente.css, config.js, data.js,
+  animaciones.js, cliente.js, ia.js, instalar.js, manifest e íconos; NO el panel). En
   install los guarda en la caché (si uno falla, que no se caiga la instalación) y llama a
   skipWaiting; en activate borra las cachés de otras versiones y llama a clients.claim; en
   fetch, solo para pedidos GET del mismo origen: primero internet (y guarda la copia), y si
@@ -88,18 +71,18 @@ Convierte el proyecto en una app instalable (PWA):
   beforeinstallprompt: guarda el evento y muestra el botón #boton-instalar; al pulsarlo,
   llama a prompt() y luego lo vuelve a ocultar. En appinstalled muestra el aviso
   "¡App instalada!".
-- En #index.html y #panel.html agrega en el <head> <link rel="manifest"
-  href="manifest.json"> y <link rel="apple-touch-icon" href="img/icono-192.png">, y carga
-  js/instalar.js después del último script. En #index.html agrega, antes del botón
-  "Empezar", un botón class="btn btn--secundario btn--sm" id="boton-instalar" hidden con
-  el texto "📲 Instalar app".
+- En #index.html agrega en el <head> <link rel="manifest" href="manifest.json"> y
+  <link rel="apple-touch-icon" href="img/icono-192.png">, carga js/instalar.js después del
+  último script, y agrega, antes del botón "Empezar", un botón
+  class="btn btn--secundario btn--sm" id="boton-instalar" hidden con el texto
+  "📲 Instalar app".
 - Crea iconos.html (junto a index.html), una página que usa css/base.css y js/config.js:
   un campo "Emoji del ícono" (con label) que empieza con CONFIG.modulo.icono, dos canvas
   de 512 y 192 px que dibujan el fondo completo con el color --acento y el emoji grande al
   centro (fuente "Segoe UI Emoji"), se redibujan al cambiar el emoji, y dos botones que
   descargan icono-512.png e icono-192.png.
-Crea SOLO esos archivos y cambia SOLO #index.html y #panel.html. Al final lista los
-archivos y cómo probarlo.
+Crea SOLO esos archivos y cambia SOLO #index.html. Al final lista los archivos y cómo
+probarlo.
 ```
 
 **✋ A mano (los íconos):**
@@ -180,7 +163,7 @@ probarlo.
 ## Paso 6 · 🌐 Subir y publicar (Publicador)
 **✋ A mano (subir):**
 1. En la pestaña del repositorio `ruta-huamanga` pulsa el enlace **uploading an existing file**.
-2. Abre la carpeta del proyecto en el Explorador de Windows, selecciona **todo lo que hay dentro** (`Ctrl + A`) y **arrástralo** a la página. Espera a que suban todos.
+2. Abre la carpeta del proyecto en el Explorador de Windows, selecciona **todo lo que hay dentro** (`Ctrl + A`) y luego **`Ctrl + clic` en `panel.html`** para quitarlo de la selección. **Arrastra** el resto a la página y espera a que suban todos.
 3. Abajo escribe `Ruta Huamanga` → **Commit changes**.
 
 **✋ A mano (publicar):**
@@ -188,7 +171,9 @@ probarlo.
 2. **Build and deployment** → **Source**: **Deploy from a branch** → **Branch:** **main** y **/ (root)** → **Save**.
 3. Espera 1 o 2 minutos y pulsa **F5**: arriba aparece **"Your site is live at…"**. Copia la dirección y **mándala al grupo de WhatsApp** del equipo.
 
-**✅ Comprueba:** la dirección abre Ruta Huamanga con el mapa, los lugares y "Arma tu ruta". Agregando `panel.html` al final, pide usuario y contraseña.
+**✅ Comprueba:**
+1. La dirección abre Ruta Huamanga con el mapa, los lugares y "Arma tu ruta".
+2. Agregando `panel.html` al final de la dirección sale **404**: el panel no está en internet. ✔️
 
 ---
 
@@ -198,12 +183,14 @@ probarlo.
 2. Abre la app desde su ícono **🗺️** en la pantalla de inicio.
 3. **📍 ¿Qué hay cerca de mí?** → **Permitir** la ubicación.
 4. En el lugar más cercano, **🧭 Cómo llegar**.
+5. Mientras tanto, el **Piloto** abre `panel.html` en la PC del grupo y crea un lugar nuevo con estado **Publicado**.
 
 **✅ Comprueba:**
 1. La app se abre **a pantalla completa**, sin la barra de Chrome.
 2. El lugar más cercano es de verdad el más cercano a donde están (en el colegio, comparen entre todos).
 3. **Cómo llegar** abre la app de **Google Maps** con la ruta a pie.
-4. Pon el **modo avión** y abre la app: el sitio igual se abre (el mapa y los datos necesitan internet).
+4. Cierra y abre la app: aparece el **lugar nuevo** que creó el Piloto desde el panel de la PC.
+5. Pon el **modo avión** y abre la app: el sitio igual se abre (el mapa y los datos necesitan internet).
 
 ---
 
@@ -211,7 +198,7 @@ probarlo.
 **✋ A mano:**
 1. Cambia algo pequeño que hayan anotado los Probadores (por ejemplo, un texto).
 2. En `sw.js` sube la versión: `app-v1` → `app-v2`.
-3. Publicador: en el repositorio, **Add file → Upload files** → arrastra **otra vez todo** el contenido de la carpeta → **Commit changes**.
+3. Publicador: en el repositorio, **Add file → Upload files** → arrastra **otra vez todo** el contenido de la carpeta, **menos `panel.html`** → **Commit changes**.
 
 **✅ Comprueba:** en 1 o 2 minutos, **F5** en la dirección muestra el cambio. En el celular, cierra la app y ábrela dos veces.
 
@@ -245,3 +232,5 @@ Elijan una idea y **escriban su propio prompt** para Copilot. Debe tener: **arch
 | No aparece "Instalar app" | Abre la dirección `https://…github.io/…` (no el archivo), revisa que `img/icono-192.png` e `img/icono-512.png` estén en el repositorio y pulsa **F5** |
 | La app instalada no muestra mi cambio | Sube la versión en `sw.js`, vuelve a subir los archivos y abre la app dos veces |
 | La IA de "Arma tu ruta" dejó de responder | Avísale al profesor. Mientras tanto funciona en modo demo |
+| Subí `panel.html` por error | En el repositorio, abre `panel.html` → **⋯ → Delete file** → **Commit changes** |
+| El celular no muestra lo que guardé en el panel | Revisa que el panel use el mismo `config.js` (misma URL de Supabase) y que el estado sea **Publicado**. Cierra y abre la app |
