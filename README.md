@@ -45,7 +45,15 @@ Abre `index.html` en el navegador. Para trabajar, abre la carpeta en **VS Code**
 
 | Grupo | Emprendimiento | Guía |
 |---|---|---|
+| 01 | 🎓 Tutor Virtual | [01-tutor-virtual.md](docs/sesion08/01-tutor-virtual.md) |
+| 02 | 🧭 IA Responsable | [02-ia-responsable.md](docs/sesion08/02-ia-responsable.md) |
+| 03 | 🚨 A.D.C | [03-adc.md](docs/sesion08/03-adc.md) |
+| 04 | 📅 Planificador para postulantes | [04-planificador.md](docs/sesion08/04-planificador.md) |
+| 05 | 📚 Biblioteca Virtual | [05-biblioteca.md](docs/sesion08/05-biblioteca.md) |
+| 06 | 🧺 Raíces Locales | [06-raices-locales.md](docs/sesion08/06-raices-locales.md) |
+| 07 | 🌻 Ayllu Cuida | [07-ayllu-cuida.md](docs/sesion08/07-ayllu-cuida.md) |
 | 08 | 🗺️ Ruta Huamanga | [08-ruta-huamanga.md](docs/sesion08/08-ruta-huamanga.md) |
+| 09 | ✅ Planly | [09-planly.md](docs/sesion08/09-planly.md) |
 
 ---
 
