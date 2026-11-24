@@ -196,7 +196,8 @@ archivo.
 ## Paso 6 · 🗺️ Mapa interactivo y "Ubicar en el mapa"
 **🛠️ Pega en Copilot:**
 ```
-Agrega un mapa real con Leaflet y OpenStreetMap (gratis, sin clave):
+Agrega un mapa real con Leaflet y OpenStreetMap (gratis, sin clave). Leaflet por CDN está
+permitido en este paso: úsalo, no dibujes un mapa a mano con divs, SVG ni cuadrículas.
 - En #config.js agrega CONFIG.mapa = { centro: [-13.1631, -74.2244], zoom: 15 }.
 - En #index.html y #panel.html agrega en el <head>, antes de css/base.css, el CSS
   https://unpkg.com/leaflet@1.9.4/dist/leaflet.css, y antes de js/config.js el script
@@ -345,6 +346,7 @@ Elijan una idea y **escriban su propio prompt** para Copilot. Debe tener: **arch
 |---|---|
 | Copilot cambió algo que no pedí | **Undo** y pega otra vez el prompt |
 | Página en blanco o un botón no hace nada | **F12** → **Console** → copia el error rojo → pega en Copilot: `Tengo este error en la consola. Diagnostica la causa y aplica la corrección mínima.` y el error debajo |
+| El mapa es una cuadrícula gris sin calles | Copilot dibujó un mapa falso en vez de usar Leaflet. Pega en Copilot: `El mapa de #index.html y #cliente.js no usa Leaflet. Reemplázalo por un mapa real con Leaflet 1.9.4 y OpenStreetMap como dice el paso 6 de la guía, sin cambiar el pasaporte ni la ruta.` |
 | "El mapa necesita internet" o el mapa sale gris | Leaflet y los mapas se descargan de internet. Revisa la conexión y pulsa **F5** |
 | El mapa del panel sale cortado | Cambia de vista y vuelve a **🗺️ Ubicar en el mapa** (necesita `invalidateSize()`) |
 | Un lugar no sale en el mapa | No tiene latitud y longitud. Ubícalo en **🗺️ Ubicar en el mapa** |

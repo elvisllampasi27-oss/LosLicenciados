@@ -169,7 +169,8 @@ para las tres tablas. No modifiques ningún otro archivo.
 ## Paso 6 · ➗ Fórmulas matemáticas
 **🛠️ Pega en Copilot:**
 ```
-Agrega al sitio el dibujo de fórmulas matemáticas escritas en LaTeX con KaTeX:
+Agrega al sitio el dibujo de fórmulas matemáticas escritas en LaTeX con KaTeX (KaTeX por CDN
+está permitido en este paso: úsalo, no lo reemplaces por código hecho a mano):
 - En #index.html agrega en el <head>, antes de css/base.css, el CSS
   https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css, y antes de js/config.js los
   scripts https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js y

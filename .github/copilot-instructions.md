@@ -4,7 +4,8 @@ Este proyecto es una plantilla web educativa (I.E. "Los Licenciados", 5.º de se
 
 ## Stack
 - HTML5 semántico, CSS3 con variables y JavaScript puro con scripts clásicos (sin `type="module"`).
-- PROHIBIDO agregar frameworks, librerías, CDNs de JS, npm o pasos de compilación. Debe funcionar abriendo el `.html` con doble clic.
+- PROHIBIDO agregar frameworks, npm o pasos de compilación. Debe funcionar abriendo el `.html` con doble clic.
+- Librerías por CDN: SOLO cuando el prompt la nombra con su URL (por ejemplo Leaflet para mapas o KaTeX para fórmulas). En ese caso es OBLIGATORIO usarla tal cual, con `<link>` y `<script>` clásicos; nunca la reemplaces por una versión hecha a mano. Si el prompt no nombra una librería, no agregues ninguna.
 
 ## Partes del software (respeta esta separación)
 | Archivo | Responsabilidad |
