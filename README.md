@@ -41,9 +41,11 @@ Abre `index.html` en el navegador. Para trabajar, abre la carpeta en **VS Code**
 | 08 | 🗺️ Ruta Huamanga | [08-ruta-huamanga.md](docs/grupos/08-ruta-huamanga.md) |
 | 09 | ✅ Planly | [09-planly.md](docs/grupos/09-planly.md) |
 
-### 📲 Sesión 08 · Su app en internet y en el celular (todos los grupos)
+### 📲 Sesión 08 · Su app en internet y en el celular (publicar + 2 funciones de celular)
 
-[docs/SESION_08_PUBLICAR.md](docs/SESION_08_PUBLICAR.md): acceso al panel, app instalable, GitHub Pages e instalación en el celular.
+| Grupo | Emprendimiento | Guía |
+|---|---|---|
+| 08 | 🗺️ Ruta Huamanga | [08-ruta-huamanga.md](docs/sesion08/08-ruta-huamanga.md) |
 
 ---
 
